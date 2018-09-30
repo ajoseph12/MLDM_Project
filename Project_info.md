@@ -26,6 +26,7 @@ Dataset Creation
 Dataset Representation
 ----------------------
 - Structured way : in the form of sequences. We wiil have to implement an algo based on Freeman's Code. 
+	⋅⋅*  The idea is, you have a matrix of pixels, we begin at the top left of the matrix. Once you 
 - Numerical way : using Deep Learning
 
 
