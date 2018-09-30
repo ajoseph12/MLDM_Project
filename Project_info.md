@@ -1,18 +1,18 @@
 Project Information 
 ===================
 
-* Credits - 6 - about 120+ hours of work for each groupmate
-* Timeline - 3.5 months 
-* Report - [Scientific Format](https://2017.icml.cc/Conferences/2017/StyleAuthorInstructions) - 8 pages with introduction, SOTA, experimental setup, experimental resutls etc. Use icml template
-* Defence - Present what was done and online presentation
+* __ __Credits__ __ - 6 - about 120+ hours of work for each groupmate
+* __ __Timeline__ __ - 3.5 months 
+* __ __Report__ __ - [Scientific Format](https://2017.icml.cc/Conferences/2017/StyleAuthorInstructions) - 8 pages with introduction, SOTA, experimental setup, experimental resutls etc. Use icml template
+* __ __Defence__ __ - Present what was done and online presentation
 
 Intorduction
 ------------
 
-* Sequence Mining- Hence we'll implement machine learning and data mining approaches. For mining approachs, sequence mining algorithms 
+* __ __Sequence Mining__ __ - Hence we'll implement machine learning and data mining approaches. For mining approachs, sequence mining algorithms 
 must be used. The algo must track the main patterns which are representative of each class of digits. This is doen in an unsupervised way as we don't want learn a classifier, rather only extract the most important patterns. 
-* Metric Learning - According to the repsentation we learn from sequence minig, a metric learning algo should be implemented, eg: apply LMNN - implement at least one algo (implementations exist in matlab and python). During defence, methodological questions will also be posed.  
-* Deep Learning - Used only to generate features/ learn latent space. DO NOT learn classifier. The new features can be used with KNN algo.
+* __ __Metric Learning__ __ - According to the repsentation we learn from sequence minig, a metric learning algo should be implemented, eg: apply LMNN - implement at least one algo (implementations exist in matlab and python). During defence, methodological questions will also be posed.  
+* __ __Deep Learning__ __ - Used only to generate features/ learn latent space. DO NOT learn classifier. The new features can be used with KNN algo.
 
 
 Dataset Creation 
@@ -25,31 +25,8 @@ Dataset Creation
 
 Dataset Representation
 ----------------------
-* Structured way : in the form of sequences. We wiil have to implement an algo based on Freeman's Code.
-	- The idea is, you have a matrix of pixels, we begin at the top left of the matrix. Once you 
-* Numerical way : using Deep Learning
+* __ __Structured way__ __ - in the form of sequences. We wiil have to implement an algo based on Freeman's Code.
+	- __ __The idea__ __ - you have a matrix of pixels, we begin at the top left of the matrix. Once you 
+* __ __Numerical way__ __ - using Deep Learning
 
-1. dsfsdfsf
-..
-
-To be Contd...
-
-1. First ordered list item
-2. Another item
-⋅⋅* Unordered sub-list. 
-1. Actual numbers don't matter, just that it's a number
-⋅⋅1. Ordered sub-list
-4. And another item.
-
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-* Unordered list can use asterisks
-	- sup item
-	1. close 
-
-- Or minuses
-+ Or pluses
+1
