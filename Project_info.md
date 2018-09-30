@@ -17,7 +17,7 @@ Dataset Creation
 ----------------
 
 * Dataset ought to be created using one's own environment to create digits. 
-* You can also merge created dataset with SOTA dataset like [MNIST](http://yann.lecun.com/exdb/mnist/)
+* You can also merge created dataset with SOTA dataset like [MNIST](http://yann.lecun.com/exdb/mnist/).
 * You can also generate your own datasets using GANZ - adversarial methods.
 
 
@@ -52,7 +52,7 @@ Going Further
 -------------
 
 * Implement Transfer learning methods. For example, we are two in a group, the only one draws digits for training and the second draw digits for testing. And there's possibly going to be a shift in the distribution between the two and one will need to automatically adapt one's model to this shift.
-* KNN is not perfect, we have storage and complexity problems. So we'll have to implement different strategies to overcome these disadvantages (CNN, radial speed up method,.. etc). There exits plenty of algorithms to help over the disadvantages of KNN, so one should evaluate different strategies and compare its performance - in terms of accuracy and time/space complexity - with the baseline (standard KNN) 
+* KNN is not perfect, we have storage and complexity problems. So we'll have to implement different strategies to overcome these disadvantages (CNN, radial speed up method,.. etc). There exits plenty of algorithms to help over the disadvantages of KNN, so one should evaluate different strategies and compare its performance - in terms of accuracy and time/space complexity - with the baseline (standard KNN) .
 * Create something from the designed classifier (possibly the optimal one), like a game of sorts - a calculator for example.
 
 
@@ -63,6 +63,7 @@ General Comments
 * The objective is to get the best results and it's a competition between groups. __Bonus__ to group with the best accuracy.
 * Platform could have an option for downloading own dataset for comparison. 
 * Don't have to reimplement LMNN from scratch.
+* Report must be done in LATEX.
 
 
 Reference and Msc Material
