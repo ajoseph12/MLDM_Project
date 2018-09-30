@@ -25,10 +25,28 @@ Dataset Creation
 
 Dataset Representation
 ----------------------
-- Structured way : in the form of sequences. We wiil have to implement an algo based on Freeman's Code. 
-	⋅⋅*  The idea is, you have a matrix of pixels, we begin at the top left of the matrix. Once you 
+1. Structured way : in the form of sequences. We wiil have to implement an algo based on Freeman's Code. 
+⋅⋅*  The idea is, you have a matrix of pixels, we begin at the top left of the matrix. Once you 
 - Numerical way : using Deep Learning
 
-
+1. dsfsdfsf
+..
 
 To be Contd...
+
+1. First ordered list item
+2. Another item
+⋅⋅* Unordered sub-list. 
+1. Actual numbers don't matter, just that it's a number
+⋅⋅1. Ordered sub-list
+4. And another item.
+
+⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
+
+⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
+⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
+⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+
+* Unordered list can use asterisks
+- Or minuses
++ Or pluses
