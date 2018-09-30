@@ -43,7 +43,9 @@ Sequence Mining
 
 *  __The Idea__ - The objective would be to apply the sequence mining algorithm on each category of digits. This should in turn help extract the most interesting patterns characterizing each class of digits.  
 	- ___Attention 1___ - imagine we have 2 sequence patterns samples - 1222224.. and 1216224..for a digit say '3'. But for some reason, there is a small noise in one of the three's resulting in a slight change is sequence values. So one must think of a way of filtering this noise so a to predict the right digit - either remove 16 and replace with 2's or the can just be removed. 
-		- ___Comment 1.1___ - Another strategy is, one will consider two patterns to be the same, if the edit distance between patterns one and two is bounded by some threshold. This way we can allow for some edit errors or noise. 
+	- ___Comment 1___ - A strategy to deal with _Attention 1_ would be, one can consider two patterns to be the same, if the edit distance between patterns one and two is bounded by some threshold. This way we can allow for some edit errors or noise. 
+	- ___Comment 2___ - One could use a CNN to learn features to benifit from the the filters that learn to extract patterns. Since the convolutional kernels in a CNN can be seen as a sub-patterns of the digit (filters extract low-high level features of images). Deep Learning could be used to mine for digits . __This method can't be used as a replacement to _Comment 1_ as implementing data data mining approaches is imperative, deep learning is just the cherry on the cake.__ 
+
 
 
 Going Further
@@ -51,6 +53,7 @@ Going Further
 
 * Implement Transfer learning methods. For example, we are two in a group, the only one draws digits for training and the second draw digits for testing. And there's possibly going to be a shift in the distribution between the two and one will need to automatically adapt one's model to this shift.
 * KNN is not perfect, we have storage and complexity problems. So we'll have to implement different strategies to overcome these disadvantages (CNN, radial speed up method,.. etc). There exits plenty of algorithms to help over the disadvantages of KNN, so one should evaluate different strategies and compare its performance - in terms of accuracy and time/space complexity - with the baseline (standard KNN) 
+* Create something from the designed classifier (possibly the optimal one), like a game of sorts - a calculator for example.
 
 
 General Comments 
