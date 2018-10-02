@@ -1,0 +1,287 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>DigitRecogML</title>
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <link rel="shortcut icon" type="image/ico" href="{{ url_for('static', filename='images/favicon.ico') }}" />
+    <!-- Plugin-CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+    <!-- Main-Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <script src="{{ url_for('static', filename='js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#primary-menu">
+
+    <div class="preloader">
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+    <!--Mainmenu-area-->
+    <div class="mainmenu-area" data-spy="affix" data-offset-top="100">
+        <div class="container">
+            <!--Logo-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand logo">
+                    <h2>DigitRecogML</h2>
+                </a>
+            </div>
+            <!--Logo/-->
+            <nav class="collapse navbar-collapse" id="primary-menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#home-page">Home</a></li>
+                    <li><a href="#demo-page">Demo</a></li>
+                    <li><a href="#feature-page">About the Project</a></li>
+                    <li><a href="#about-us-page">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!--Mainmenu-area/-->
+
+
+
+    <!--Header-area-->
+    <header class="header-area overlay full-height relative v-center" id="home-page">
+        <div class="absolute anlge-bg"></div>
+        <div class="container">
+            <div class="row v-center">
+                <div class="col-xs-12 col-md-7 header-text">
+                    <h2>Handwritten Digit Recognition using Machine Learning Techniques</h2>
+                    <p>DigitRecogML is a handwritten digit recognition platform that makes use of Nearest Neighbour and Metric Learning algorithms, along with Deep Learning features and Sequence Mining algorithms along with the MNIST database for increased accuracy. </p>
+                    <a href="#demo-page" class="button white">Go to Demo</a>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-5 text-right">
+                    <div class="screen-box screen-slider">
+                        <div class="item">
+                            <img src="{{ url_for('static', filename='images/screen-1.jpg') }}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{{ url_for('static', filename='images/screen-2.jpg') }}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{{ url_for('static', filename='images/screen-3.jpg') }}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{{ url_for('static', filename='images/screen-4.jpg') }}" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="{{ url_for('static', filename='images/screen-5.jpg') }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--Header-area/-->
+
+
+
+    <!--Feature-area-->
+    <section class="gray-bg section-padding" id="demo-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+                    <div class="page-title">
+                        <h2>UNDER CONSTRUCTION</h2>
+                        <p>This is where the digit drawing canvas will go.....</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="box">
+                        <div class="box-icon">
+                            <img src="{{ url_for('static', filename='images/service-icon-1.png') }}" alt="">
+                        </div>
+                        <h4>Basically bullshit</h4>
+                        <p>Lorem ipsum dolor sit amt, consectet adop adipisicing elit, sed do eiusmod tepo raraincididunt ugt labore.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="box">
+                        <div class="box-icon">
+                            <img src="{{ url_for('static', filename='images/service-icon-2.png') }}" alt="">
+                        </div>
+                        <h4> that'll be gone</h4>
+                        <p>Lorem ipsum dolor sit amt, consectet adop adipisicing elit, sed do eiusmod tepo raraincididunt ugt labore.</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="box">
+                        <div class="box-icon">
+                            <img src="{{ url_for('static', filename='images/service-icon-3.png') }}" alt="">
+                        </div>
+                        <h4>pretty soon!!!</h4>
+                        <p>Lorem ipsum dolor sit amt, consectet adop adipisicing elit, sed do eiusmod tepo raraincididunt ugt labore.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Feature-area/-->
+
+
+        <section class="price-area overlay section-padding" id="about-us-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+                    <div class="page-title">
+                        <h2>About Us</h2>
+                        <p>We are three M2 masters students specializing in Machine Learning and Data Mining at Jean Monnet University, France. <br> This assignment is part of our Machine Learning Group Project.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="single-team">
+                        <div class="team-photo">
+                            <img src="{{ url_for('static', filename='images/team-section-1.png') }}" alt="">
+                        </div>
+                        <h4>ROHIL GUPTA</h4>
+                        <h6>M2 MLDM @UJM</h6>
+                        <ul class="social-menu">
+                            <li><a href="https://www.facebook.com/rggg.rockrrr"><i class="ti-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/RohilGupta"><i class="ti-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/rohil-gupta/"><i class="ti-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="single-team">
+                        <div class="team-photo">
+                            <img src="{{ url_for('static', filename='images/team-section-2.png') }}" alt="">
+                        </div>
+                        <h4>NISAL UPENDRA</h4>
+                        <h6>M2 MLDM @UJM</h6>
+                        <ul class="social-menu">
+                            <li><a href="https://www.facebook.com/nisalup"><i class="ti-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/the_shopboy"><i class="ti-twitter"></i></a></li>
+                            <li><a href="https://linkedin.com/in/nisalup/"><i class="ti-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="single-team">
+                        <div class="team-photo">
+                            <img src="{{ url_for('static', filename='images/team-section-3.png') }}" alt="">
+                        </div>
+                        <h4>ALLWYN JOSEPH</h4>
+                        <h6>M2 MLDM @UJM</h6>
+                        <ul class="social-menu">
+                            <li><a href="https://www.facebook.com/allwyn.joseph.927"><i class="ti-facebook"></i></a></li>
+                            <li><a href="#"><i class="ti-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/allwyn-joseph/"><i class="ti-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="gray-bg section-padding" id="feature-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+                    <div class="page-title">
+                        <h2>PROJECT DETAILS</h2>
+                        <p>We'll fill this part out later, Rohil!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="box">
+                        <div class="box-icon">
+                            <img src="{{ url_for('static', filename='images/portfolio-icon-1.png') }}" alt="">
+                        </div>
+                        <h3>Sequence Mining</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quas nulla est adipisci,</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="box">
+                        <div class="box-icon">
+                            <img src="{{ url_for('static', filename='images/portfolio-icon-2.png') }}" alt="">
+                        </div>
+                        <h3>Machine Learning and Deep Learning</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quas nulla est adipisci,</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="box">
+                        <div class="box-icon">
+                            <img src="{{ url_for('static', filename='images/portfolio-icon-3.png') }}" alt="">
+                        </div>
+                        <h3>MNIST Database</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quas nulla est adipisci,</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-area relative sky-bg" id="contact-page">
+        <div class="absolute footer-bg"></div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <p>&copy;Copyright 2018 DigitRecogML. All right reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <!--Vendor-JS-->
+    <script src="{{ url_for('static', filename='js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
+    <!--Plugin-JS-->
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/contact-form.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.parallax-1.1.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scrollUp.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/magnific-popup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <!--Main-active-JS-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
