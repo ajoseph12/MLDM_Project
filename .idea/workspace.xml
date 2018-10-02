@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ded5637-d8f9-4c47-97c4-cedb574c798b" name="Default" comment="" />
+    <list default="true" id="6ded5637-d8f9-4c47-97c4-cedb574c798b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +18,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="143" column="42" lean-forward="false" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
+            <state relative-caret-position="17">
+              <caret line="123" column="99" lean-forward="false" selection-start-line="123" selection-start-column="99" selection-end-line="123" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -24,8 +28,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="119">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -54,7 +58,7 @@
       <file leaf-file-name="index1.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
+            <state relative-caret-position="1853">
               <caret line="166" column="11" lean-forward="false" selection-start-line="166" selection-start-column="8" selection-end-line="166" selection-end-column="11" />
               <folding />
             </state>
@@ -85,9 +89,9 @@
       <find>edit_distanceForDnD</find>
       <find>alignm</find>
       <find>href</find>
-      <find>src</find>
       <find>url</find>
       <find>fav</find>
+      <find>src</find>
       <find>screen-</find>
       <find>owl</find>
     </findStrings>
@@ -122,6 +126,7 @@
         <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/SequentialSearch.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/templates/index.html" />
       </list>
     </option>
@@ -311,14 +316,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/recursive.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3179">
-          <caret line="187" column="43" lean-forward="false" selection-start-line="187" selection-start-column="43" selection-end-line="187" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Algorithms2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -631,9 +628,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SequentialSearch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Algorithms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="217" column="49" lean-forward="false" selection-start-line="217" selection-start-column="49" selection-end-line="217" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
+        <state relative-caret-position="1853">
           <caret line="166" column="11" lean-forward="false" selection-start-line="166" selection-start-column="8" selection-end-line="166" selection-end-column="11" />
           <folding />
         </state>
@@ -655,34 +676,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SequentialSearch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Algorithms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="217" column="49" lean-forward="false" selection-start-line="217" selection-start-column="49" selection-end-line="217" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="143" column="42" lean-forward="false" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
+        <state relative-caret-position="17">
+          <caret line="123" column="99" lean-forward="false" selection-start-line="123" selection-start-column="99" selection-end-line="123" selection-end-column="99" />
           <folding />
         </state>
       </provider>
