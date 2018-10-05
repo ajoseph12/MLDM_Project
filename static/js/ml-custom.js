@@ -1,0 +1,65 @@
+//handle canvas activities
+
+var c = document.getElementById('c');
+var ctx = c.getContext('2d')
+var paint = false
+var hidden = false
+window.onmousedown = toggle
+window.onmousemove = draw
+window.onmouseup = drawoff
+window.ondblclick = clear
+
+function toggle(){
+  if (paint){
+    paint = false;
+    document.getElementById("toggle").innerHTML = "Draw OFF";
+  }
+  else{
+    paint = true;
+    document.getElementById("toggle").innerHTML = "Draw ON";
+  }
+}
+
+function draw(e){
+  var rect =  c.getBoundingClientRect();
+  if (paint && !hidden)  ctx.fillRect(e.x - rect.left,e.y - rect.top,50,50)
+}
+
+function drawoff(){
+  paint = false;
+  document.getElementById("toggle").innerHTML = "Draw OFF";
+}
+
+function clear(){
+  ctx.clearRect(0,0,500,500);
+}
+
+function save(){
+  document.getElementById('head').style.display = 'none';
+  document.getElementById('toggle').style.display = 'none';
+  document.getElementById('save').style.display = 'none';
+  var digit = new Image();
+  digit.src = c.toDataURL();
+  c.width = 28
+  c.height = 28
+  ctx.drawImage(digit,4,4,20,20); // add 4x4 border & shrink
+  document.getElementById('img').src = c.toDataURL();
+  document.getElementById('c').style.display = 'none';
+  hidden = true   // is canvas still editable if hidden?
+
+  var imgData = ctx.getImageData(0, 0, 28, 28);
+  var imgBlack = []
+  for (var i = 0; i < imgData.data.length; i += 4) {
+    if (imgData.data[i+3] === 255) imgBlack.push(1)
+    else imgBlack.push(0)
+   }
+
+  var dataStr = JSON.stringify(imgBlack)
+  console.log(dataStr)
+
+  document.getElementById("link").innerHTML = '<a href='
+    + 'https://mnist-en10.c9users.io/?q=' + dataStr
+    + '>Click to Send Image</a>'
+}
+
+
