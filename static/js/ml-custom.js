@@ -7,16 +7,13 @@ var hidden = false
 window.onmousedown = toggle
 window.onmousemove = draw
 window.onmouseup = drawoff
-window.ondblclick = clear
 
 function toggle(){
   if (paint){
     paint = false;
-    document.getElementById("toggle").innerHTML = "Draw OFF";
   }
   else{
     paint = true;
-    document.getElementById("toggle").innerHTML = "Draw ON";
   }
 }
 
@@ -27,7 +24,6 @@ function draw(e){
 
 function drawoff(){
   paint = false;
-  document.getElementById("toggle").innerHTML = "Draw OFF";
 }
 
 function clear(){
@@ -35,17 +31,14 @@ function clear(){
 }
 
 function save(){
-  document.getElementById('head').style.display = 'none';
-  document.getElementById('toggle').style.display = 'none';
-  document.getElementById('save').style.display = 'none';
   var digit = new Image();
   digit.src = c.toDataURL();
   c.width = 28
   c.height = 28
-  ctx.drawImage(digit,4,4,20,20); // add 4x4 border & shrink
+  ctx.drawImage(digit,4,4,20,20);
   document.getElementById('img').src = c.toDataURL();
-  document.getElementById('c').style.display = 'none';
-  hidden = true   // is canvas still editable if hidden?
+  // document.getElementById('c').style.display = 'none';
+  hidden = true
 
   var imgData = ctx.getImageData(0, 0, 28, 28);
   var imgBlack = []
@@ -54,12 +47,9 @@ function save(){
     else imgBlack.push(0)
    }
 
-  var dataStr = JSON.stringify(imgBlack)
+  var dataStr = JSON.stringify(imgData)
   console.log(dataStr)
 
-  document.getElementById("link").innerHTML = '<a href='
-    + 'https://mnist-en10.c9users.io/?q=' + dataStr
-    + '>Click to Send Image</a>'
 }
 
 
