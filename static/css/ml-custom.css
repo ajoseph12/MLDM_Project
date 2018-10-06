@@ -8,6 +8,42 @@
     border-color:#138fc2;
 }
 
+.canvas-img-css {
+    border-style:solid;
+    border-width:2px;
+    border-color:#138fc2;
+    margin-bottom:8px;
+}
+
 .canvas-button-css {
   text-align:center;
+}
+.rendered-image-button {
+  text-align:center;
+}
+
+#instruction-text-img {
+  text-align:center;
+  font-weight: bold;
+}
+
+#instruction-text-draw {
+  font-weight: bold;
+}
+#matrix-table td {
+   padding:0; margin:0;
+   font-size:10px;
+   width:10px;
+   border: 0px !important;
+}
+
+
+#matrix-table {
+   border-collapse: collapse;
+   width:50%;
+   margin:auto;
+}
+
+#table-matrix {
+   text-align:center;
 }

@@ -114,17 +114,29 @@
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
                     <div class="page-title">
                         <h2>Handwritten Digit Recognition Demo</h2>
-                        <p>Draw your Digit below:</p>
+                        <p id="instruction-text-draw">Draw your Digit below:</p>
                     </div>
                 </div>
             </div>
+            <div class="row" id="table-matrix" hidden>
+                <table class="table" id="matrix-table">
+                    <tbody id="matrix-body"></tbody>
+                </table>
+            </div>
+            <div class="row" id="instruction-text-img" hidden>
+                <p>Rendered 28x28 Image</p>
+            </div>
             <div class="row canvas-row-css">
-                <img id="img" style="">
+                <img id="img" class="canvas-img-css" width='500' height='500' hidden>
                 <canvas id='c' class="canvas-css" width='500' height='500' ></canvas>
             </div>
-            <div class="row canvas-button-css">
+            <div class="row canvas-button-css" id="canvas-button-css">
                 <button class="btn btn-success" id="save" onclick="save()">Generate Image</button>
-                <button class="btn btn-warning" id="clear" onclick="clear()">Clear Canvas</button>
+                <button class="btn btn-warning" id="clear" onclick="clears()">Clear Canvas</button>
+            </div>
+            <div class="row rendered-image-button" id="rendered-image-button" hidden>
+                <button class="btn btn-success" onclick="something()">Match!</button>
+                <button class="btn btn-warning" id="reset-all" onclick="resetAll()">Cancel and Redraw</button>
             </div>
         </div>
     </section>
