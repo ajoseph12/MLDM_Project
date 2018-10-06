@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ml-custom.css') }}">
     <script src="{{ url_for('static', filename='js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
     <!--[if lt IE 9]>
@@ -112,39 +113,30 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
                     <div class="page-title">
-                        <h2>UNDER CONSTRUCTION</h2>
-                        <p>This is where the digit drawing canvas will go.....</p>
+                        <h2>Handwritten Digit Recognition Demo</h2>
+                        <p id="instruction-text-draw">Draw your Digit below:</p>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="box">
-                        <div class="box-icon">
-                            <img src="{{ url_for('static', filename='images/service-icon-1.png') }}" alt="">
-                        </div>
-                        <h4>Basically bullshit</h4>
-                        <p>Lorem ipsum dolor sit amt, consectet adop adipisicing elit, sed do eiusmod tepo raraincididunt ugt labore.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="box">
-                        <div class="box-icon">
-                            <img src="{{ url_for('static', filename='images/service-icon-2.png') }}" alt="">
-                        </div>
-                        <h4> that'll be gone</h4>
-                        <p>Lorem ipsum dolor sit amt, consectet adop adipisicing elit, sed do eiusmod tepo raraincididunt ugt labore.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="box">
-                        <div class="box-icon">
-                            <img src="{{ url_for('static', filename='images/service-icon-3.png') }}" alt="">
-                        </div>
-                        <h4>pretty soon!!!</h4>
-                        <p>Lorem ipsum dolor sit amt, consectet adop adipisicing elit, sed do eiusmod tepo raraincididunt ugt labore.</p>
-                    </div>
-                </div>
+            <div class="row" id="table-matrix" hidden>
+                <table class="table" id="matrix-table">
+                    <tbody id="matrix-body"></tbody>
+                </table>
+            </div>
+            <div class="row" id="instruction-text-img" hidden>
+                <p>Rendered 28x28 Image</p>
+            </div>
+            <div class="row canvas-row-css">
+                <img id="img" class="canvas-img-css" width='500' height='500' hidden>
+                <canvas id='c' class="canvas-css" width='500' height='500' ></canvas>
+            </div>
+            <div class="row canvas-button-css" id="canvas-button-css">
+                <button class="btn btn-success" id="save" onclick="save()">Generate Image</button>
+                <button class="btn btn-warning" id="clear" onclick="clears()">Clear Canvas</button>
+            </div>
+            <div class="row rendered-image-button" id="rendered-image-button" hidden>
+                <button class="btn btn-success" onclick="something()">Match!</button>
+                <button class="btn btn-warning" id="reset-all" onclick="resetAll()">Cancel and Redraw</button>
             </div>
         </div>
     </section>
@@ -282,6 +274,7 @@
     <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
     <!--Main-active-JS-->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ml-custom.js') }}"></script>
 </body>
 
 </html>
