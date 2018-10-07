@@ -2,14 +2,6 @@ import torch
 from torch import nn, optim
 import support
 
-# Load data
-data = support.minst_data()
-# Create loader with data so that we can iterate over it
-data_loader = torch.utils.data.DataLoader(data, batch_size = 100, shuffle = True)
-# Num batches
-num_batches = len(data_loader)
-
-
 
 # GLOBAL VARIABLES
 HIDDEN_UNITS = [1024, 512, 256]

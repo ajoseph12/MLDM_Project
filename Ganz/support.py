@@ -32,5 +32,3 @@ def noise(size):
 	n = Variable(torch.randn(size, 100))
 	if torch.cuda.is_available(): return n.cuda()
 	return n
-
-
