@@ -103,12 +103,36 @@ class Logger:
 
 	def display_status(self, epoch, num_epochs, n_batch, num_batches, d_error, g_error, d_pred_real, d_pred_fake):
 
-		if isinstance(d_error, )
+		if isinstance(d_error, torch.autograd.Variable):
+			d_error = d_error.data.cpu().numpy()
+
+		if isinstance(g_error, torch.autograd.Variable):
+			g_error = g_error.data.cpu().numpy()
+
+		if isinstance(d_pred_real, torch.autograd.Variable):
+			d_pred_real = d_pred_real.data
+
+		if isinstance(d_pred_fake, torch.autograd.Variable):
+			d_pred_fake = d_pred_fake.data 
+
+		print('Epoch: [{}/{}], Batch Num: [{}/{}]'.format(epoch, num_epochs,
+			n_batch, num_batches))
+		print('Discriminator Loss: {:.4f}, Generator Loss: {:.4f}'.format(d_error, 
+			g_error))
+		print('D(x): {:.4f}, D(G(z)): {:.4f}'.format(d_pred_real.mean(),
+			d_pred_fake.mean()))
 
 
+	def save_models(self, generator, discriminator, epoch):
+
+		out_dir = './data/models/{}'.format(self.data_subdir)
+		Logger._make_dir(out_dir)
+		torch.save(generator.state_dict(), '{}/G_epoch_{}'.format(out_dir, epoch))
+		torch.save(discriminator.state_dict(), '{}/D_epoch_{}'.format(out_dir, epoch))
 
 
-
+	def close(self):
+		self.writer.close()
 
 
 	@staticmethod
