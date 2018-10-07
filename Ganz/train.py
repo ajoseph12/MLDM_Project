@@ -6,7 +6,8 @@ import networks
 
 def real_data_target(size):
 
-	"""Tensor of ones with shape = size"""
+	"""Tensor of ones with shape = size as real-images targets 
+	are always ones"""
 
 	data = Variable(torch.ones(size, 1))
 	if torch.cuda.is_available(): return data.cuda()
@@ -16,7 +17,8 @@ def real_data_target(size):
 
 def fake_data_target(size):
 
-	"""Tensor of zeros, with shape = size"""
+	"""Tensor of zeros, with shape = size as fake-images targets
+	are always zero"""
 
 	data = Variable(torch.zeros(size, 1))
 	if torch.cuda.is_available(): return data.cuda()
@@ -36,15 +38,34 @@ def train_discriminator(optimizers, real_data, fake_data):
 	# Train on fake data
 	prediction_fake = discriminator(fake_data)
 	# Calculate the error and backpropagate
-	error_fake = loss(prediction_real, real_data_target(real_data.size(0)))
+	error_fake = loss(prediction_real, fake_data_target(real_data.size(0)))
 	error_fake.backward()
 
 	# Update weights with gradient 
 	optimizer.step()
 
+	return error_real + error_fake, prediction_real, prediction_fake
+
+
 def train_generator(optimizer, fake_data):
 
-	
+	# Reset gradients
+	optimizer.zero_grad()
+
+	# sample noise and generate fake data
+	prediction = discriminator(fake_data)
+	# Calculate error and backpropagate
+	error = loss(prediction, real_data_target(real_data.size(0)))
+	error.backwards()
+
+	# Update weights with gradients
+	optimizer.step
+
+	return error
+
+
+
+
 
 def main():
 
