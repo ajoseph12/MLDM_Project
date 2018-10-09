@@ -36,12 +36,14 @@ def train_discriminator(optimizer, real_data, fake_data):
 
 	# Train on real data (NOT SURE ABOUT WORKING!!!)
 	prediction_real = discriminator(real_data) 
+	
 	# Calculate the error and backpropagate
 	error_real = loss(prediction_real, real_data_target(real_data.size(0)))
 	error_real.backward()
 
 	# Train on fake data
 	prediction_fake = discriminator(fake_data)
+	
 	# Calculate the error and backpropagate
 	error_fake = loss(prediction_fake, fake_data_target(real_data.size(0)))
 	error_fake.backward()
@@ -59,12 +61,13 @@ def train_generator(optimizer, fake_data):
 
 	# sample noise and generate fake data
 	prediction = discriminator(fake_data)
+	
 	# Calculate error and backpropagate
 	error = loss(prediction, real_data_target(prediction.size(0)))
 	error.backward()
 
 	# Update weights with gradients
-	optimizer.step
+	optimizer.step()
 
 	return error
 
@@ -127,7 +130,7 @@ if __name__ == '__main__':
 	
 	D_STEPS = 1 # Number of steps to apply to discriminator 
 	EPOCHS = 200
-	LR = 0.002
+	LR = 0.0002
 	DATA_FOLDER = './torch_data/VGAN/MNIST' # folder in which MINST is stored
 
 	## Data preparation 
@@ -142,8 +145,8 @@ if __name__ == '__main__':
 	generator = networks.GeneratorNet()
 
 	## Optimizers
-	d_optimizer = optim.Adam(discriminator.parameters(), LR)
-	g_optimizer = optim.Adam(generator.parameters(), LR)
+	d_optimizer = optim.Adam(discriminator.parameters(), lr = LR)
+	g_optimizer = optim.Adam(generator.parameters(), lr = LR)
 
 	## Loss function
 	loss = nn.BCELoss() # Binary cross entropy loss function

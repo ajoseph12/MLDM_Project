@@ -4,7 +4,6 @@ from torch.autograd.variable import Variable
 from torchvision import transforms, datasets
 
 
-
 def minst_data(DATA_FOLDER):
 
 	compose = transforms.Compose([transforms.ToTensor(), 
@@ -30,3 +29,4 @@ def noise(size):
 	n = Variable(torch.randn(size, 100))
 	if torch.cuda.is_available(): return n.cuda()
 	return n
+

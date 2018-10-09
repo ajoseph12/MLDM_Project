@@ -1,13 +1,12 @@
 import torch 
 from torch import nn, optim
-import support
+
 
 
 # GLOBAL VARIABLES
 HIDDEN_UNITS = [1024, 512, 256]
 NEGSLOPE_LRELU = [0.2, 0.2, 0.2] # -ve relu slopes (same for G and D)
 DROPOUT = [0.3, 0.3, 0.3]
-
 
 
 class DiscriminatorNet(torch.nn.Module):
@@ -22,10 +21,6 @@ class DiscriminatorNet(torch.nn.Module):
 
 		n_features = 784 # 28*28 images
 		n_out = 1
-		HIDDEN_UNITS = [1024, 512, 256]
-		NEGSLOPE_LRELU = [0.2, 0.2, 0.2] # -ve relu slopes (same for G and D)
-		DROPOUT = [0.3, 0.3, 0.3]
-
 
 		# Hidden-layer definitions
 		self.hidden_0 = nn.Sequential(nn.Linear(n_features, HIDDEN_UNITS[0]),
@@ -64,9 +59,6 @@ class GeneratorNet(torch.nn.Module):
 
 		n_features = 100
 		n_out = 784
-		HIDDEN_UNITS = [1024, 512, 256]
-		NEGSLOPE_LRELU = [0.2, 0.2, 0.2] # -ve relu slopes (same for G and D)
-		DROPOUT = [0.3, 0.3, 0.3]
 
 		self.hidden_0 = nn.Sequential(nn.Linear(n_features,HIDDEN_UNITS[2]), 
 			nn.LeakyReLU(NEGSLOPE_LRELU[0]))
