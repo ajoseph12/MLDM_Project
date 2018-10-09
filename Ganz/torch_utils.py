@@ -40,7 +40,7 @@ class Logger:
 			g_error, step)
 
 
-	def log_images(self, images, num_images, epoch, n_batch, num_batches,format = 'NCHW', normlize = True):
+	def log_images(self, images, num_images, epoch, n_batch, num_batches,format = 'NCHW', normalize = True):
 
 		"""Input images are expected in the NCHW format"""
 
@@ -54,19 +54,19 @@ class Logger:
 		img_name = '{}/images{}'.format(self.comment, '')
 
 		# Make horizontal grid from image tensor
-		horizontal_grid = vutils.make_grid(images, normlize=normlize, 
+		horizontal_grid = vutils.make_grid(images, normalize=normalize, 
 			scale_each = True)
 
 		# Make vertical grid from image tensor
 		nrows= int(np.sqrt(num_images))
-		grid = vutils.make_grid(images, nrow = nrows, normlize = True, 
+		grid = vutils.make_grid(images, nrow = nrows, normalize = True, 
 			scale_each = True)
 
 		# Add horizontal images to tensorboard
 		self.writer.add_image(img_name, horizontal_grid, step)
 
 		# Save plots
-		self.save_torch_images(horizontal_grid, gird, epoch, n_batch)
+		self.save_torch_images(horizontal_grid, grid, epoch, n_batch)
 
 
 	def save_torch_images(self, horizontal_grid, grid, epoch, n_batch, plot_horizontal = True):
@@ -75,7 +75,7 @@ class Logger:
 		Logger._make_dir(out_dir)
 
 		# Plot and save horizontal
-		fig = plt.figure(figuresize = (16, 16))
+		fig = plt.figure(figsize = (16, 16))
 		plt.imshow(np.moveaxis(horizontal_grid.numpy(), 0, -1))
 		plt.axis('off')
 		if plot_horizontal:
@@ -117,8 +117,9 @@ class Logger:
 
 		print('Epoch: [{}/{}], Batch Num: [{}/{}]'.format(epoch, num_epochs,
 			n_batch, num_batches))
-		print('Discriminator Loss: {:.4f}, Generator Loss: {:.4f}'.format(d_error, 
-			g_error))
+		#print('the man: {:.5}'.format(d_error))
+		print('Discriminator Loss: {}, Generator Loss: {}'.format(d_error,
+		 g_error))
 		print('D(x): {:.4f}, D(G(z)): {:.4f}'.format(d_pred_real.mean(),
 			d_pred_fake.mean()))
 

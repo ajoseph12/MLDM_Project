@@ -19,8 +19,12 @@ class DiscriminatorNet(torch.nn.Module):
 	def __init__(self):
 
 		super().__init__()
+
 		n_features = 784 # 28*28 images
 		n_out = 1
+		HIDDEN_UNITS = [1024, 512, 256]
+		NEGSLOPE_LRELU = [0.2, 0.2, 0.2] # -ve relu slopes (same for G and D)
+		DROPOUT = [0.3, 0.3, 0.3]
 
 
 		# Hidden-layer definitions
@@ -47,8 +51,6 @@ class DiscriminatorNet(torch.nn.Module):
 		return x
 
 
-dicriminator = DiscriminatorNet()
-
 
 
 class GeneratorNet(torch.nn.Module):
@@ -58,9 +60,13 @@ class GeneratorNet(torch.nn.Module):
 	"""
 
 	def __init__(self):
-		super(GeneratorNet, self).__init__()
+		super().__init__()
+
 		n_features = 100
 		n_out = 784
+		HIDDEN_UNITS = [1024, 512, 256]
+		NEGSLOPE_LRELU = [0.2, 0.2, 0.2] # -ve relu slopes (same for G and D)
+		DROPOUT = [0.3, 0.3, 0.3]
 
 		self.hidden_0 = nn.Sequential(nn.Linear(n_features,HIDDEN_UNITS[2]), 
 			nn.LeakyReLU(NEGSLOPE_LRELU[0]))
@@ -75,18 +81,15 @@ class GeneratorNet(torch.nn.Module):
 
 	
 	def forward(self, x):
+
 		x = self.hidden_0(x)
 		x = self.hidden_1(x)
 		x = self.hidden_2(x)
 		x = self.out(x)
 
+		return x
 
 
-
-class A(object):
-
-	def __init__(self):
-		print("done")
 
 
 

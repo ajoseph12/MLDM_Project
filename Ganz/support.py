@@ -4,10 +4,8 @@ from torch.autograd.variable import Variable
 from torchvision import transforms, datasets
 
 
-DATA_FOLDER = './torch_data/VGAN/MNIST'
 
-
-def minst_data():
+def minst_data(DATA_FOLDER):
 
 	compose = transforms.Compose([transforms.ToTensor(), 
 		transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
