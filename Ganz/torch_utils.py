@@ -117,7 +117,6 @@ class Logger:
 
 		print('Epoch: [{}/{}], Batch Num: [{}/{}]'.format(epoch, num_epochs,
 			n_batch, num_batches))
-		#print('the man: {:.5}'.format(d_error))
 		print('Discriminator Loss: {}, Generator Loss: {}'.format(d_error,
 		 g_error))
 		print('D(x): {:.4f}, D(G(z)): {:.4f}'.format(d_pred_real.mean(),
