@@ -1,7 +1,12 @@
 //handle canvas activities
 
 var c = document.getElementById('c');
-var ctx = c.getContext('2d')
+var ctx = c.getContext('2d');
+
+//code to inverse colors in matrix
+ctx.fillStyle = "#000000";
+ctx.fillRect(0, 0, c.width, c.height);
+ctx.fillStyle = '#FFFFFF';
 var paint = false
 var hidden = false
 window.onmousedown = toggle
