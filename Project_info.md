@@ -74,7 +74,7 @@ Reference and Msc Material
 
 
 ## Questions and Comments (Please don't change the above text,  if you have any questions, comments or suggestions, please put them below)
-*
+* Make the adjustable pointer for writing the digit to increase or decrease the thickness of the digit written. 
 
 
 
