@@ -30,3 +30,5 @@ def noise(size):
 	if torch.cuda.is_available(): return n.cuda()
 	return n
 
+
+

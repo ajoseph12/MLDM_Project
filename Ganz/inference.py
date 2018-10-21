@@ -32,7 +32,7 @@ if __name__ == '__main__':
 	
 	GEN_IMAGE = './generated_images' # folder generated images are stored
 	torch_utils.Logger._make_dir(GEN_IMAGE)
-	MODEL_FOLDER = 'G_epoch_199'
+	MODEL_FOLDER = 'Gen_Model/G_epoch_199'
 	num_test_samples = 5
 	
 	main()

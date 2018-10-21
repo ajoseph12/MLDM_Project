@@ -158,19 +158,6 @@ class Logger:
 
 
 
-"""
-# Load data
-data = support.minst_data()
-# Create loader with data, so that we can iterate over it
-data_loader = torch.utils.data.DataLoader(data, batch_size=100, shuffle=True)
-# Num batches
-num_batches = len(data_loader)
-
-for n_batch, (real_batch, x) in enumerate(data_loader):
-	print(n_batch, real_batch, x)
-	break
-
-"""
 
 
 
