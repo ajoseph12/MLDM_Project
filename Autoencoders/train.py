@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
 	## Global Initializations
 	LR = 0.0005 # learning rate
-	N_FACTOR = 0.3 # noise factor 
+	N_FACTOR = 0.4 # noise factor 
 	BATCH_SIZE = 100
 	EPOCHS = 10
 	DATA_PATH = './torch_data/VGAN/MNIST' # data save/load path
