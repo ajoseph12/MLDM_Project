@@ -35,7 +35,7 @@ def modified_med(s1, s2, ec=float(1)):
                 con3 = m[i - 1, j - 1]
             else:
                 # if different letters, we add one
-                con3 = m[i - 1, j - 1] + cost(s1[i - 1], s2[j - 1], ec_insertion=False, ec_deletion=False)
+                con3 = m[i - 1, j - 1] + 1 + cost(s1[i - 1], s2[j - 1], ec_insertion=False, ec_deletion=False)
 
             # assign minimum value
             m[i][j] = min(con1, con2, con3)
@@ -62,6 +62,6 @@ if __name__ == "__main__":
     s1 = np.random.randint(0, high=8, size=20)
     s2 = np.random.randint(0, high=8, size=10)
 
-    cost, matrix = modified_med(s1, s2, ec=0.4)
+    cost, matrix = modified_med(s1, s2, ec=1)
     print(cost)
     print(matrix)
