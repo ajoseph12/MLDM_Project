@@ -5,7 +5,7 @@ from torchvision import transforms, datasets
 import errno
 import os
 
-def minst_data(DATA_FOLDER, batch_size, download = False):
+def minst_data(DATA_FOLDER, batch_size = 100, download = False, batches = True):
 
 	compose = transforms.Compose([transforms.ToTensor(), 
 		transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
@@ -16,14 +16,17 @@ def minst_data(DATA_FOLDER, batch_size, download = False):
 		download = download), datasets.MNIST(root = out_dir, train = False, 
 		transform = compose, download = download)]
 
-	train_loader = torch.utils.data.DataLoader(dataset=train_test_dataset[0],
-		batch_size=batch_size,shuffle=True)
-	test_loader = torch.utils.data.DataLoader(dataset=train_test_dataset[1],
-		batch_size=batch_size,shuffle=True)
+	if batches == True:
+		train_loader = torch.utils.data.DataLoader(dataset=train_test_dataset[0],
+			batch_size=batch_size,shuffle=True)
+		test_loader = torch.utils.data.DataLoader(dataset=train_test_dataset[1],
+			batch_size=batch_size,shuffle=True)
 
-	train_test_data = [train_loader, test_loader]
+		train_test_data = [train_loader, test_loader]
 
-	return train_test_data
+		return train_test_data
+
+	else : return train_test_dataset
 
 
 def make_dir(directory):

@@ -143,12 +143,14 @@ class Logger:
 	@staticmethod
 	def _make_dir(directory):
 
-		try:
-			os.makedirs(directory)
+		if not os.path.isdir(directory):
+			
+			try:
+				os.makedirs(directory)
 
-		except OSError as e:
-			if e.errno != errno.EEXIST:
-				raise
+			except OSError as e:
+				if e.errno != errno.EEXIST:
+					raise
 
 
 
