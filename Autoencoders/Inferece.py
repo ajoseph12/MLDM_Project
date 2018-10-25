@@ -53,30 +53,23 @@ def main():
 
 		for n, data in enumerate(train_test_dataset):
 
-			batch_size = 2
+			batch_size = 60000 if n == 0 else 10000
 			embedding_dict[n] = list()
-			loader = torch.utils.data.DataLoader(dataset=data, batch_size=2,shuffle=True)
+			loader = torch.utils.data.DataLoader(dataset=data, batch_size=batch_size,shuffle=True)
 			
 
 			for images, labels in loader:
-
+				
 				e_output = encoder(images, batch_size)
 				embedding = e_output.detach().numpy()
-				#embedding = np.reshape
-				#print(embedding)
+				labels = labels.detach().numpy()
+				
 				embedding_dict[n].append((embedding, labels))
 
 				break
 
-
-		print(embedding_dict)
-
-
-
-
-
+		# Either pickle dict or save matrices in txt file
 		
-
 
 if __name__ == '__main__':
 

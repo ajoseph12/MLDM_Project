@@ -7,6 +7,7 @@ import torchvision.datasets as dset
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 
+## loss = 0.0044
 
 ## Encoder Network
 class Encoder(nn.Module):
