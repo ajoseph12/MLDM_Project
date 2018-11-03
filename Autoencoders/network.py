@@ -70,11 +70,13 @@ class Decoder(nn.Module):
 		x = self.layer_1(x)
 		x = self.layer_2(x)
 		out = self.layer_3(x)
+		
 		return out
 
 
-
-
+test = torch.randn((1,4,7,7))
+d = Decoder()
+d(test,1)
 
 
 

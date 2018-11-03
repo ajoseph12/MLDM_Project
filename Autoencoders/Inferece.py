@@ -6,6 +6,7 @@ import argparse
 from torch_utils import *
 from network import *
 import random
+import numpy as np
 
 """
 To-do
@@ -27,6 +28,7 @@ def main():
 	
 	## Instantiating generator class and loading model
 	encoder, decoder = torch.load(MODEL_FOLDER, map_location='cpu')
+	
 
 	if MODE == "Image Gen":
 
@@ -43,6 +45,9 @@ def main():
 			# Save images
 			for n,image in enumerate(generated_images):
 				scipy.misc.imsave('generated_images/gen_image_{}_{}.jpg'.format(i,n), image[0])
+
+		np.save(str(save_path) + "{}".format(i), generated_images)
+
 
 	elif MODE == "Encoding":
 		
@@ -68,8 +73,23 @@ def main():
 
 				break
 
-		# Either pickle dict or save matrices in txt file
+
+	elif MODE == "Dataset Gen":
+
+		ae_train_x = torch.from_numpy(np.load(str(data_path)+"ae_train_x.npy"))
+		ae_test_x = torch.from_numpy(np.load(str(data_path)+"ae_test_x.npy"))
 		
+		data_list = [ae_train_x, ae_test_x]
+
+		for n,image in enumerate(data_list):
+
+			temp_size = image.shape[0]
+			e_output = encoder(image, temp_size)
+			d_output = decoder(e_output, temp_size)
+			generated_images = d_output.detach().numpy()
+			data = 'ae_train_x_new' if n == 0 else 'ae_test_x_new'
+			np.save(str(save_path) + data, generated_images)
+
 
 if __name__ == '__main__':
 
@@ -81,12 +101,15 @@ if __name__ == '__main__':
 	MODEL_FOLDER = 'model/demo_autoencoder.pkl'
 	DATA_FOLDER = './torch_data/VGAN/MNIST'
 	
-	MODE = 'Encoding'
+	MODE = 'Dataset Gen'
 	
 	## For image generating mode
 	LIST_OF_NUM = [i for i in range(10)] # list of digits to be generated
 	NUM_COUNT = 2 # number of generated instances for each digit
 
+	## For Dataset Gen mode
+	data_path = 'Data/'
+	save_path = 'Data/'
 
 	main()
 

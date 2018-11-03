@@ -66,9 +66,6 @@ def main():
 	num_dict, images = load_data_dict()
 
 	for i in num_dict.keys():
-		print(i, len(num_dict[i]))
-
-	for i in num_dict.keys():
 		temp_idx_list = num_dict[i]
 		print(len(temp_idx_list))
 		num_batches = len(temp_idx_list)//batch_size + 1
