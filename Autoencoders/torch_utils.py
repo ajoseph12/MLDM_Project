@@ -41,7 +41,7 @@ def make_dir(directory):
 				raise
 
 
-def number_dict(batch_size = 30000, path = './torch_data/VGAN/MNIST/dataset'):
+def number_dict(batch_size = 30000, path = './Data/torch_data/VGAN/MNIST/dataset'):
 
 	train_dataset = datasets.MNIST(root=path, train=True,transform=transforms.ToTensor(),
 		download= False)

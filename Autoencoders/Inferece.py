@@ -26,7 +26,7 @@ def arg_parse():
 
 def main():
 	
-	## Instantiating generator class and loading model
+	## Initializing generator class and loading model
 	encoder, decoder = torch.load(MODEL_FOLDER, map_location='cpu')
 	
 
@@ -38,6 +38,7 @@ def main():
 		for i in LIST_OF_NUM:
 
 			image_random = images[random.sample(num_dict[i], NUM_COUNT)]
+			print(image_random.size())
 			e_output = encoder(image_random, NUM_COUNT)
 			d_output = decoder(e_output, NUM_COUNT)
 			generated_images = d_output.detach().numpy()
@@ -49,29 +50,31 @@ def main():
 		np.save(str(save_path) + "{}".format(i), generated_images)
 
 
-	elif MODE == "Encoding":
+	elif MODE == "Embedding Gen":
 		
-		##### This part will have to be modified once a combined dataset is generated ####
+		## Load the datasets
+		train_X = torch.from_numpy(np.load(data_path + "train_X.npy"))
+		train_Y = torch.from_numpy(np.load(data_path + "train_Y.npy"))
+		train_Y = train_Y.unsqueeze(1)
+		test_X = torch.from_numpy(np.load(data_path + "test_X.npy"))
+		test_Y = torch.from_numpy(np.load(data_path + "test_Y.npy"))
+		test_Y = test_Y.unsqueeze(1)
+		data_list = [(train_X, train_Y), (test_X, test_Y)]
 
-		train_test_dataset = minst_data(DATA_FOLDER, batches = False)
-		embedding_dict = dict()
+		
+		## Initialize embeddings tensor
+		embeddings = torch.empty(1,197)
 
-		for n, data in enumerate(train_test_dataset):
+		for n, (images, labels) in enumerate(data_list):
 
-			batch_size = 60000 if n == 0 else 10000
-			embedding_dict[n] = list()
-			loader = torch.utils.data.DataLoader(dataset=data, batch_size=batch_size,shuffle=True)
-			
+			batch_size = images.shape[0]
+			e_output = encoder(images.float(), batch_size) #.float() otherwise an error is reporduced
+			embedding = torch.cat((e_output,labels.float()), 1) #.float() otherwise an error is reporduced
+			embeddings = torch.cat((embeddings, embedding))		
 
-			for images, labels in loader:
-				
-				e_output = encoder(images, batch_size)
-				embedding = e_output.detach().numpy()
-				labels = labels.detach().numpy()
-				
-				embedding_dict[n].append((embedding, labels))
-
-				break
+		embeddings = embeddings[1:] # remove the first empty/random row
+		embeddings = embeddings.detach().numpy()
+		np.save(emb_store_path + 'embeddings', embeddings)
 
 
 	elif MODE == "Dataset Gen":
@@ -93,23 +96,32 @@ def main():
 
 if __name__ == '__main__':
 
-	
-	GEN_IMAGE = './generated_images' # folder generated images are stored
-	make_dir(GEN_IMAGE)
-	EMBEDDING = './embeddings'
-	make_dir(EMBEDDING)
+	MODE = 'Embedding Gen'	
 	MODEL_FOLDER = 'model/demo_autoencoder.pkl'
-	DATA_FOLDER = './torch_data/VGAN/MNIST'
 	
-	MODE = 'Dataset Gen'
-	
-	## For image generating mode
-	LIST_OF_NUM = [i for i in range(10)] # list of digits to be generated
-	NUM_COUNT = 2 # number of generated instances for each digit
+	if MODE == 'Image Gen':
 
-	## For Dataset Gen mode
-	data_path = 'Data/'
-	save_path = 'Data/'
+		## For image generating mode
+		DATA_FOLDER = './torch_data/VGAN/MNIST'
+		GEN_IMAGE = './generated_images' # folder generated images are stored
+		make_dir(GEN_IMAGE)
+		save_path ='generated_images/'
+		LIST_OF_NUM = [i for i in range(10)] # list of digits to be generated
+		NUM_COUNT = 2 # number of generated instances for each digit
+
+	elif MODE == 'Embedding Gen':
+
+		## For Encodiing mode
+		EMBEDDING = './embeddings'
+		make_dir(EMBEDDING)
+		data_path = "Data/Data_zip/"
+		emb_store_path =  "embeddings/"
+
+	elif MODE == 'Dataset Gen':
+
+		## For Dataset Gen mode
+		data_path = 'Data/'
+		save_path = 'Data/'
 
 	main()
 
