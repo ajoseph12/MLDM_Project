@@ -131,12 +131,42 @@
                 <canvas id='c' class="canvas-css" width='500' height='500' ></canvas>
             </div>
             <div class="row canvas-button-css" id="canvas-button-css">
-                <button class="btn btn-success" id="save" onclick="save()">Generate Image</button>
-                <button class="btn btn-warning" id="clear" onclick="clears()">Clear Canvas</button>
+                <div class="panel panel-warning">
+                    <div class="panel-heading canvas-panel-style-options"><b>Options</b></div>
+                    <div class="panel-body">
+                        <div class="row panel-row-flex">
+                            <div class="col-md-4">
+                                <button class="btn btn-success" id="save" onclick="save()">Generate Image</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-warning" id="clear" onclick="clears()">Clear Canvas</button>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="pointer-thickness">Pointer thickness: <span id="canvas-thickness-value"></span></label>
+                                <input id="pointer-thickness" type="range" min="1" max="100" value="35" class="slider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="row rendered-image-button" id="rendered-image-button" hidden>
-                <button class="btn btn-success" onclick="something()">Match!</button>
-                <button class="btn btn-warning" id="reset-all" onclick="resetAll()">Cancel and Redraw</button>
+                <div class="panel panel-warning">
+                    <div class="panel-heading canvas-panel-style-options"><b>Operations</b></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-success"  data-toggle="modal" data-target="#analyseModal">Predict Number</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-danger" id="somethingelse">Sequence Mining</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-warning" id="reset-all" onclick="resetAll()">Cancel and Redraw</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -258,7 +288,35 @@
         </div>
     </footer>
 
+    #modal for all subsequent work
+    <div class="modal fade" id="analyseModal" role="dialog">
+        <div class="modal-dialog">
 
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Select Prediction Method</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <button class="btn btn-primary" id="else">Use Numerical Methods</button>
+                      </div>
+                      <div class="col-md-6">
+                          <button class="btn btn-danger" id="elseelse">Use Structural Methods</button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
 
 
 

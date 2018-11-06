@@ -3,15 +3,21 @@
 var c = document.getElementById('c');
 var ctx = c.getContext('2d');
 
-//code to inverse colors in matrix
+//code to inverse colors in matrix follows
+//this firstly sets all the canvas in black
 ctx.fillStyle = "#000000";
 ctx.fillRect(0, 0, c.width, c.height);
+
+//this is to do the drawing in white in the black background
 ctx.fillStyle = '#FFFFFF';
 var paint = false
 var hidden = false
 window.onmousedown = toggle
 window.onmousemove = draw
 window.onmouseup = drawoff
+
+//set default thickness
+var pointerThickness = 35;
 
 function toggle(){
   if (paint){
@@ -22,9 +28,10 @@ function toggle(){
   }
 }
 
-function draw(e){
+function draw(e, pointerThickness){
   var rect =  c.getBoundingClientRect();
-  if (paint && !hidden)  ctx.fillRect(e.x - rect.left,e.y - rect.top,50,50)
+  // console.log(this.pointerThickness)
+  if (paint && !hidden)  ctx.fillRect(e.x - rect.left,e.y - rect.top,this.pointerThickness,this.pointerThickness)
 }
 
 function drawoff(){
@@ -33,6 +40,9 @@ function drawoff(){
 
 function clears(){
   ctx.clearRect(0,0,500,500);
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(0, 0, c.width, c.height);
+  ctx.fillStyle = '#FFFFFF';
 }
 
 function save(){
@@ -40,6 +50,8 @@ function save(){
   let ctx1 = c1.getContext('2d')
   c1.width = 28
   c1.height = 28
+  ctx1.fillStyle = "#000000";
+  ctx1.fillRect(0, 0, c1.width, c1.height);
   ctx1.drawImage(c, 4, 4, 20, 20);
   document.getElementById('img').src = c1.toDataURL();
   document.getElementById('c').style.display = 'none';
@@ -53,13 +65,14 @@ function save(){
 
   var imgData = ctx1.getImageData(0, 0, 28, 28);
   var imgBlack = []
+  console.log(imgData)
   for (var i = 0; i < imgData.data.length; i += 4) {
-    if (imgData.data[i+3] === 255) imgBlack.push(1)
+    if (imgData.data[i+2] === 255) imgBlack.push(1)
     else imgBlack.push(0)
    }
 
   var dataStr = JSON.stringify(imgBlack)
-  console.log(dataStr);
+  //console.log(dataStr);
 
   //print imgBlack to HTML
   var splitImgBlack = [];
@@ -94,4 +107,14 @@ function resetAll() {
   hidden = false
 }
 
+
+var slider = document.getElementById("pointer-thickness");
+var output = document.getElementById("canvas-thickness-value");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    output.innerHTML = this.value;
+    pointerThickness = this.value;
+}
 
