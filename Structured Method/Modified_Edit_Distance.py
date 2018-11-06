@@ -61,7 +61,8 @@ def cost(x, y, ec_insertion=True, ec_deletion=False):
 if __name__ == "__main__":
     s1 = np.random.randint(0, high=8, size=20)
     s2 = np.random.randint(0, high=8, size=10)
-
+    print(s1)
+    print(s2)
     cost, matrix = modified_med(s1, s2, ec=1)
     print(cost)
-    print(matrix)
+    #print(matrix)

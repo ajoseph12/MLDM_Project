@@ -37,7 +37,7 @@ def image_processing_for_freemancode(train=True, test=False):
 
 
 def basic_freeman_code_generator(img_1):
-    ret, img = cv2.threshold(img_1, 1, 255, 0)
+    ret, img = cv2.threshold(img_1, -0.9999999999999999, 1, 0)
     start_point = 0
     for i in np.arange(img.shape[0]):
         for j in np.arange(img.shape[1]):
@@ -84,7 +84,7 @@ def basic_freeman_code_generator(img_1):
             new_point = (curr_point[0] + change_i[idx], curr_point[1] + change_j[idx])
 
             if new_point[0] < 28 and new_point[1] < 28:
-                if img_1[new_point] != 0:  # if is ROI
+                if img[new_point] != 0:  # if is ROI
                     border.append(new_point)
                     chain.append(direction)
                     curr_point = new_point
@@ -110,4 +110,3 @@ if __name__ == "__main__":
         print()
     chain, border = basic_freeman_code_generator(display_image)
     print(chain, border)
-
