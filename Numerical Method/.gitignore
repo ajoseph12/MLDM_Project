@@ -1,7 +1,4 @@
 Data/
-torch_data/
 __pycache__/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
-/static/index1.html
-trails.py
