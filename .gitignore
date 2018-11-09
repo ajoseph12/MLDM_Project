@@ -4,3 +4,4 @@ __pycache__/
 */.ipynb_checkpoints/
 /static/index1.html
 .idea/*
+.idea/workspace.xml
