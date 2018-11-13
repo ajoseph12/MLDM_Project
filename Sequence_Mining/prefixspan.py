@@ -23,10 +23,18 @@ db = [
     [1, 1, 1, 2, 2],
 ]
 
+#import freeman code for drawn image
+
+#mine the image
+
+
+
 minsup = 2
 
 results = []
 
 frequent_rec([], [(i, -1) for i in range(len(db))])
 
-print(results)
+import cv
+print(cv2.)
+#print(results)
