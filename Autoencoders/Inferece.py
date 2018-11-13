@@ -96,7 +96,7 @@ def main():
 
 if __name__ == '__main__':
 
-	MODE = 'Embedding Gen'	
+	MODE = 'Dataset Gen'	
 	MODEL_FOLDER = 'model/demo_autoencoder.pkl'
 	
 	if MODE == 'Image Gen':
