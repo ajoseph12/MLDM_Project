@@ -37,9 +37,13 @@ import pandas as pd
 
 
 def basic_freeman_code_generator(img_1):
-    ret, img = cv2.threshold(img_1, 1, 255, 0)
+    ret, img = cv2.threshold(img_1, 0, 2, 0)
+    for i in range(28):
+        img[27, i] = 0
+        img[i, 27] = 0
+        img[0, i] = 0
+        img[i, 0] = 0
     start_point = start_point_finder(img)
-
     directions = [0, 1, 2,
                   3, 4,
                   5, 6, 7]
@@ -52,12 +56,14 @@ def basic_freeman_code_generator(img_1):
     for direction in directions:
         idx = dir2idx[direction]
         new_point = (start_point[0] + change_i[idx], start_point[1] + change_j[idx])
-        if img[new_point] != 0:  # if is ROI
+
+        if img[new_point] != 0:
             border.append(new_point)
             chain.append(direction)
             curr_point = new_point
             break
-
+    if len(chain) == 0 and len(border) == 0:
+        return chain, border, img
     count = 0
 
     while curr_point != start_point:
@@ -98,6 +104,11 @@ def start_point_finder(img):
 
 
 def filter_noise(image, chain_border):
+    # if len(chain_border) == 0:
+    #     # for i in range(image.shape[0]):
+    #     #     for j in range(image.shape[1]):
+    #     #         image[i, j] = 0
+    #     # return image
     df = pd.DataFrame(columns=['x_corr', 'y_corr'])
     for i in range(len(chain_border)):
         df.loc[i, 'x_corr'] = chain_border[i][0]
@@ -107,24 +118,34 @@ def filter_noise(image, chain_border):
     return image
 
 
+def iterative_removal_of_noise(image):
+    chain, border, img = basic_freeman_code_generator(image)
+    if len(chain) == 0:
+        return chain, img
+
+    image_filtered = filter_noise(img, border)
+    return chain, image_filtered
+
+
 def regenerative_freemancode(image):
     chain_array = []
     image_array = [image]
     while True:
         start_point = start_point_finder(image_array[-1])
+
         if start_point == 0:
             break
         else:
             chain, image_filtered = iterative_removal_of_noise(image_array[-1])
+            if len(chain) == 0:
+                break
             chain_array.append(chain)
             image_array.append(image_filtered)
-    return chain_array, image_array
-
-
-def iterative_removal_of_noise(image):
-    chain, border, img = basic_freeman_code_generator(image)
-    image_filtered = filter_noise(img, border)
-    return chain, image_filtered
+    longest_chain = np.empty((1, 1))
+    for i in range(len(chain_array)):
+        if len(chain_array[i]) > len(longest_chain):
+            longest_chain = chain_array[i]
+    return longest_chain
 
 
 if __name__ == "__main__":
@@ -132,7 +153,7 @@ if __name__ == "__main__":
     # df.to_hdf('/home/rohilrg/Documents/test.hdf', key='df', mode='w')
 
     images = mnist.train_images()
-    display_image = images[47]
+    display_image = images[251]
     print(type(display_image))
     for i in np.arange(display_image.shape[0]):
         for j in np.arange(display_image.shape[1]):
@@ -141,5 +162,11 @@ if __name__ == "__main__":
             else:
                 print("0", end="", flush=True)
         print()
+    # chain = regenerative_freemancode(images)
+    freemancode_array = []
+    for i in range(len(images)):
+        print(i)
+        chain = regenerative_freemancode(images[i])
+        freemancode_array.append(chain)
 
-    chain = regenerative_freemancode(display_image)
+    np.save('freemancode_array.npy')
