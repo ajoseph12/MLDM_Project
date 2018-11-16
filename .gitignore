@@ -6,3 +6,4 @@ __pycache__/
 .idea/*
 .idea/workspace.xml
 df_freemancode.hdf
+.Sequence_Mining/Output.txt/
