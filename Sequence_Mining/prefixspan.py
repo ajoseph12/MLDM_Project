@@ -1,4 +1,5 @@
 from collections import defaultdict
+import pandas as pd
 
 def frequent_rec(patt, mdb):
     results.append((len(mdb), patt))
@@ -7,34 +8,46 @@ def frequent_rec(patt, mdb):
     for (i, startpos) in mdb:
         seq = db[i]
         for j in range(startpos + 1, len(seq)):
-            l = occurs[seq[j]]
-            if len(l) == 0 or l[-1][0] != i:
-                l.append((i, j))
+            try:
+                l = occurs[seq[j]]
+                if len(l) == 0 or l[-1][0] != i:
+                    l.append((i, j))
+            except TypeError:
+                print('typeErroroccured')
 
     for (c, newmdb) in occurs.items():
         if len(newmdb) >= minsup:
             frequent_rec(patt + [c], newmdb)
 
 
-db = [
-    [0, 1, 2, 3, 4],
-    [1, 1, 1, 3, 4],
-    [2, 1, 2, 2, 0],
-    [1, 1, 1, 2, 2],
-]
-
-#import freeman code for drawn image
-
-#mine the image
-
-
-
-minsup = 2
+#import freeman code for drawn all images
+freeman_codes = pd.read_hdf('df_freemancode.hdf')
 
 results = []
 
-frequent_rec([], [(i, -1) for i in range(len(db))])
+minsup = 2
 
-import cv
-print(cv2.)
+db = []
+
+#mine the codes from 0 to 9
+for x in range(10):
+    results = []
+    db = []
+    temp_class = freeman_codes.loc[freeman_codes['Label'] == float(x)]
+
+    # generate input array from pandas dataframe
+    for index, row in temp_class.iterrows():
+        db.append(row["Freeman Code"][0].tolist())
+    frequent_rec([], [(i, -1) for i in range(len(db))])
+    with open("Output_patterns_for_" + x + ".txt", "w") as text_file:
+        print(results, file=text_file)
+
+
+
+
+
+
+
+#frequent_rec([], [(i, -1) for i in range(len(db))])
+
 #print(results)
