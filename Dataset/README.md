@@ -15,7 +15,7 @@ The test dataset was created by:
 - test_Y - a 10000 x 1 tensor : labels
 
 The dataset (adjusted for normalization between 0 and 1) can be 
-downloaded from this link : https://drive.google.com/open?id=1boLuoUtmDY8RaKvXr8BOk4oGtX4j0qrA
+downloaded from this link : https://drive.google.com/open?id=1oIYWlQP9gXKierufI5Gi-cSEPfOmuE5M
 
 The dataset with freemancode generated with label for 60,000 train images can be downloaded from https://drive.google.com/open?id=1A-dfQmsd9tdNWUeqywasIjSQgnIAUy1S
 
