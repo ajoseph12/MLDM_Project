@@ -8,17 +8,8 @@ from network import *
 import random
 import numpy as np
 
-"""
-To-do
-- Finish encoding mode
-	- create a csv/pickle file with list of digits and their embeddings
-- Figure out a way to name images from GANZ and combine them with
-mnist and autoencoder generated images to form the train and test sets
-respectively
-- Finish parser function
-- Try for a smaller embedding
 
-"""
+
 def arg_parse():
 
 	parser = argparse.ArgumentParser(description = 'Autoencoder Inference Module')
@@ -96,7 +87,7 @@ def main():
 
 if __name__ == '__main__':
 
-	MODE = 'Dataset Gen'	
+	MODE = 'Embedding Gen'	
 	MODEL_FOLDER = 'model/demo_autoencoder.pkl'
 	
 	if MODE == 'Image Gen':
@@ -114,7 +105,7 @@ if __name__ == '__main__':
 		## For Encodiing mode
 		EMBEDDING = './embeddings'
 		make_dir(EMBEDDING)
-		data_path = "Data/Data_zip/"
+		data_path = "Data/train_test_final/"
 		emb_store_path =  "embeddings/"
 
 	elif MODE == 'Dataset Gen':
