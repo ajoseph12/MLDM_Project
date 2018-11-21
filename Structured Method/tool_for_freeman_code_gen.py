@@ -37,7 +37,10 @@ import pandas as pd
 
 
 def basic_freeman_code_generator(img_1):
-    ret, img = cv2.threshold(img_1, 0, 2, 0)
+    if img_1[0, 0] != 0 and img_1[27, 27] != 0:
+        ret, img = cv2.threshold(img_1, 0.1, 1, 0)
+    else:
+        ret, img = cv2.threshold(img_1, 0.000000001, 1, 0)
     for i in range(28):
         img[27, i] = 0
         img[i, 27] = 0
@@ -62,8 +65,11 @@ def basic_freeman_code_generator(img_1):
             chain.append(direction)
             curr_point = new_point
             break
+    indicator = 0
     if len(chain) == 0 and len(border) == 0:
-        return chain, border, img
+        img[start_point[0], start_point[1]] = 0
+        indicator += 1
+        return chain, border, img, indicator
     count = 0
 
     while curr_point != start_point:
@@ -85,7 +91,7 @@ def basic_freeman_code_generator(img_1):
         if count == 1000:
             break
         count += 1
-    return chain, border, img
+    return chain, border, img, indicator
 
 
 def start_point_finder(img):
@@ -119,12 +125,12 @@ def filter_noise(image, chain_border):
 
 
 def iterative_removal_of_noise(image):
-    chain, border, img = basic_freeman_code_generator(image)
-    if len(chain) == 0:
-        return chain, img
-
-    image_filtered = filter_noise(img, border)
-    return chain, image_filtered
+    chain, border, img, indicator = basic_freeman_code_generator(image)
+    if indicator == 1:
+        return chain, img, indicator
+    if indicator == 0:
+        image_filtered = filter_noise(img, border)
+        return chain, image_filtered, indicator
 
 
 def regenerative_freemancode(image):
@@ -136,11 +142,13 @@ def regenerative_freemancode(image):
         if start_point == 0:
             break
         else:
-            chain, image_filtered = iterative_removal_of_noise(image_array[-1])
-            if len(chain) == 0:
-                break
-            chain_array.append(chain)
-            image_array.append(image_filtered)
+            chain, image_filtered, indicator = iterative_removal_of_noise(image_array[-1])
+            if indicator == 1:
+                image_array.append(image_filtered)
+                chain_array.append(chain)
+            if indicator == 0:
+                chain_array.append(chain)
+                image_array.append(image_filtered)
     longest_chain = np.empty((1, 1))
     for i in range(len(chain_array)):
         if len(chain_array[i]) > len(longest_chain):

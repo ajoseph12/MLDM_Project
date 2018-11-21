@@ -84,7 +84,7 @@ def mod_med_k(s1, s2, k=1, ec=float(1)):
         offset += 1
         if cap < m.shape[1]:
             cap += 1
-    return m[m.shape[0] - 1][m.shape[1] - 1], m
+    return m[m.shape[0] - 1][m.shape[1] - 1]
 
 
 def cost(x, y, ec_insertion=True, ec_deletion=False):
