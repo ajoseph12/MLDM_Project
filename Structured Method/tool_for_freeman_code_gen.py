@@ -1,11 +1,8 @@
 __author__ = 'rohil'
 
-import mnist
+
 import cv2
-from PIL import Image
 import numpy as np
-from skimage import measure
-import os
 import pandas as pd
 
 
@@ -157,24 +154,25 @@ def regenerative_freemancode(image):
 
 
 if __name__ == "__main__":
+    print('Hello')
     # df = image_processing_for_freemancode(train=False, test=True)
     # df.to_hdf('/home/rohilrg/Documents/test.hdf', key='df', mode='w')
 
-    images = mnist.train_images()
-    display_image = images[251]
-    print(type(display_image))
-    for i in np.arange(display_image.shape[0]):
-        for j in np.arange(display_image.shape[1]):
-            if display_image[i][j] == 0:
-                print(".", end="", flush=True)
-            else:
-                print("0", end="", flush=True)
-        print()
+    # images = mnist.train_images()
+    # display_image = images[251]
+    # print(type(display_image))
+    # for i in np.arange(display_image.shape[0]):
+    #     for j in np.arange(display_image.shape[1]):
+    #         if display_image[i][j] == 0:
+    #             print(".", end="", flush=True)
+    #         else:
+    #             print("0", end="", flush=True)
+    #     print()
     # chain = regenerative_freemancode(images)
-    freemancode_array = []
-    for i in range(len(images)):
-        print(i)
-        chain = regenerative_freemancode(images[i])
-        freemancode_array.append(chain)
-
-    np.save('freemancode_array.npy')
+    # freemancode_array = []
+    # for i in range(len(images)):
+    #     print(i)
+    #     chain = regenerative_freemancode(images[i])
+    #     freemancode_array.append(chain)
+    #
+    # np.save('freemancode_array.npy')
