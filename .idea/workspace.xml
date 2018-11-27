@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ded5637-d8f9-4c47-97c4-cedb574c798b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Sequence_Mining/Output.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sequence_Mining/test.py" afterPath="$PROJECT_DIR$/Sequence_Mining/test.py" />
-    </list>
+    <list default="true" id="6ded5637-d8f9-4c47-97c4-cedb574c798b" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,14 +23,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_preformatting.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data_preformatting.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sequence_Mining/data_preformatting.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="239">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#32#51#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pattern_filtering.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sequence_Mining/pattern_filtering.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,10 +132,11 @@
         <option value="$PROJECT_DIR$/Sequence_Mining/test.py" />
         <option value="$PROJECT_DIR$/Sequence_Mining/test1.py" />
         <option value="$PROJECT_DIR$/Sequence_Mining/data_preformatting.py" />
+        <option value="$PROJECT_DIR$/Sequence_Mining/pattern_filtering.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="20" />
     <option name="y" value="71" />
     <option name="width" value="1346" />
@@ -320,7 +327,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21669106" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -360,7 +367,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/divideandconquer.html" />
     <entry file="file://$PROJECT_DIR$/templates/recursive.html" />
     <entry file="file://$PROJECT_DIR$/SequentialSearch.py" />
     <entry file="file://$PROJECT_DIR$/templates/layout.html" />
@@ -505,10 +511,18 @@
     <entry file="file://$PROJECT_DIR$/Sequence_Mining/data_preformatting.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#32#51#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sequence_Mining/pattern_filtering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
