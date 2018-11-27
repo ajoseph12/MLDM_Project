@@ -17,7 +17,7 @@ def init(s1, s2):
 
 # Minimum Edit Distance (MED)
 # Modified Version
-def modified_med(s1, s2, ec=float(1)):
+def modified_med(s1, s2):
     # INITIALIZATION
     m = init(s1, s2)
 
@@ -25,10 +25,10 @@ def modified_med(s1, s2, ec=float(1)):
         for j in range(1, m.shape[1]):
 
             # first condition : i is an insertion
-            con1 = m[i - 1, j] + cost(s1[i - 1], ec, ec_insertion=True, ec_deletion=False)
+            con1 = m[i - 1, j] + 1
 
             # second condition : j is a deletion
-            con2 = m[i, j - 1] + cost(ec, s2[j - 1], ec_insertion=False, ec_deletion=True)
+            con2 = m[i, j - 1] + 1
 
             # third condition : i and j are a substitution
             if s1[i - 1] == s2[j - 1]:
@@ -36,15 +36,15 @@ def modified_med(s1, s2, ec=float(1)):
                 con3 = m[i - 1, j - 1]
             else:
                 # if different letters, we add one
-                con3 = m[i - 1, j - 1] + 1 + cost(s1[i - 1], s2[j - 1], ec_insertion=False, ec_deletion=False)
+                con3 = m[i - 1, j - 1] + cost(s1[i - 1], s2[j - 1])
 
             # assign minimum value
             m[i][j] = min(con1, con2, con3)
-    return m[m.shape[0] - 1][m.shape[1] - 1], m
+    return m[m.shape[0] - 1][m.shape[1] - 1]
 
 
 ## K-Strip Algorithm
-def mod_med_k(s1, s2, k=1, ec=float(1)):
+def mod_med_k(s1, s2, k=1):
     if len(s1) > len(s2):
         temp = s1
         s1 = s2
@@ -64,10 +64,10 @@ def mod_med_k(s1, s2, k=1, ec=float(1)):
     for i in range(1, m.shape[0]):
         for j in range(max(1, offset), cap):
             # first condition : i is an insertion
-            con1 = m[i - 1, j] + cost(s1[i - 1], ec, ec_insertion=True, ec_deletion=False)
+            con1 = m[i - 1, j] + 1
 
             # second condition : j is a deletion
-            con2 = m[i, j - 1] + cost(ec, s2[j - 1], ec_insertion=False, ec_deletion=True)
+            con2 = m[i, j - 1] + 1
 
             # third condition : i and j are a substitution
             if s1[i - 1] == s2[j - 1]:
@@ -75,7 +75,7 @@ def mod_med_k(s1, s2, k=1, ec=float(1)):
                 con3 = m[i - 1, j - 1]
             else:
                 # if different letters, we add one
-                con3 = m[i - 1, j - 1] + cost(s1[i - 1], s2[j - 1], ec_insertion=False, ec_deletion=False)
+                con3 = m[i - 1, j - 1] + cost(s1[i - 1], s2[j - 1])
 
             # assign minimum value
             m[i][j] = min(con1, con2, con3)
@@ -87,38 +87,28 @@ def mod_med_k(s1, s2, k=1, ec=float(1)):
     return m[m.shape[0] - 1][m.shape[1] - 1]
 
 
-def cost(x, y, ec_insertion=True, ec_deletion=False):
-    if ec_insertion and not ec_deletion:
-        return y
-    if ec_deletion and not ec_insertion:
-        return x
-    if ec_insertion == False and ec_deletion == False:
-        if x == 7:
-            x = 1
-        if y == 7:
-            y = 1
-        if x == 6:
-            x = 2
-        if y == 6:
-            y = 2
-        if x == 5:
-            x = 3
-        if y == 5:
-            y = 3
-
-        if abs(x - y) == 1:
-            return 0.25
-        if abs(x - y) == 2:
-            return 0.50
-        if abs(x - y) == 3:
-            return 0.75
-        else:
-            return 1
-
+def cost(x, y):
+    if abs(x - y) == 1:
+        return float(1/7)
+    if abs(x - y) == 2:
+        return float(2/7)
+    if abs(x - y) == 3:
+        return float(3/7)
+    if abs(x - y) == 4:
+        return float(4/7)
+    if abs(x - y) == 5:
+        return float(5/7)
+    if abs(x - y) == 6:
+        return float(6/7)
+    if abs(x-y) == 7:
+        return float(1)
+    else:
+        print('No optimal cost found, assigning 1 cost for substitution')
+        return 1
 
 if __name__ == "__main__":
-    s1 = np.random.randint(0, high=8, size=9)
-    s2 = np.random.randint(0, high=8, size=5)
+    s1 = np.random.randint(0, high=8, size=80)
+    s2 = np.random.randint(0, high=8, size=50)
     print(s1)
     print(s2)
     cost, matrix = mod_med_k(s1, s2, ec=1, k=1)
