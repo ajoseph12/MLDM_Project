@@ -65,14 +65,13 @@ function save(){
 
   var imgData = ctx1.getImageData(0, 0, 28, 28);
   var imgBlack = []
-  console.log(imgData)
   for (var i = 0; i < imgData.data.length; i += 4) {
     if (imgData.data[i+2] === 255) imgBlack.push(1)
     else imgBlack.push(0)
    }
 
   var dataStr = JSON.stringify(imgBlack)
-  //console.log(dataStr);
+  $('#current-matrix-data').text(dataStr);
 
   //print imgBlack to HTML
   var splitImgBlack = [];
@@ -92,7 +91,6 @@ function save(){
 
 
 }
-
 function resetAll() {
   clears();
   document.getElementById('c').style.display = 'inline';
@@ -118,3 +116,18 @@ slider.oninput = function() {
     pointerThickness = this.value;
 }
 
+
+$('#else').click(function(){
+    data = $('#current-matrix-data').text()
+    console.log(data)
+    $.ajax
+    ({
+        type: "POST",
+        url: 'http://localhost:5000/identify-digit',
+        contentType: 'application/json',
+        data: JSON.stringify({ "imageData": data }),
+        success: function () {
+            alert("Thanks!");
+        }
+    })
+});
