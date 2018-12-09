@@ -7,7 +7,7 @@ import random
 import numpy as np
 
 sys.path.append("..")
-from Autoencoders.network import *
+#from Autoencoders.network import *
 from Autoencoders.torch_utils import *
 
 
