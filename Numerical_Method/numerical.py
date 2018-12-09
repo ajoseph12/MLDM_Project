@@ -1,11 +1,10 @@
 import sys
-import torch 
+import torch
 import numpy
 import scipy.misc
 import pickle
 import random
 import numpy as np
-
 sys.path.append("..")
 from Autoencoders.network import *
 from Autoencoders.torch_utils import *
@@ -16,8 +15,8 @@ from Autoencoders.torch_utils import *
 class Numerical(object):
 
 
-	def __init__(self, image_input, dataset_path = 'data/embeddings_197.npy', relevant_idx_path = 'releveant_idx', 
-		ae_model_path = '../Autoencoders/model/demo_autoencoder_197.pkl', k = 50):
+	def __init__(self, image_input, dataset_path = 'Numerical_Method/data/embeddings_197.npy', relevant_idx_path = 'Numerical_Method/relevant_idx',
+		ae_model_path = 'Autoencoders/model/demo_autoencoder_197.pkl', k = 50):
 
 		"""
 		Objects instantiated on creating instance of the numerical class
@@ -60,6 +59,7 @@ class Numerical(object):
 
 		encoder, decoder = torch.load(self.ae_model_path , map_location='cpu')
 		batch_size = self.image_input.shape[0]
+
 		e_output = encoder(self.image_input.float(), batch_size)
 		embedding = e_output.detach().numpy()
 
