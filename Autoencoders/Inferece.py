@@ -21,7 +21,7 @@ def main():
 	encoder, decoder = torch.load(MODEL_FOLDER, map_location='cpu')
 	
 
-	if MODE == "Image Gen":
+	if MODE == "Image_Gen":
 
 		## Get image indices and images
 		num_dict, images = number_dict()
@@ -41,7 +41,7 @@ def main():
 		np.save(str(save_path) + "{}".format(i), generated_images)
 
 
-	elif MODE == "Embedding Gen":
+	elif MODE == "Embedding_Gen":
 		
 		## Load the datasets
 		train_X = torch.from_numpy(np.load(data_path + "train_X.npy"))
@@ -54,7 +54,7 @@ def main():
 
 		
 		## Initialize embeddings tensor
-		embeddings = torch.empty(1,197)
+		embeddings = torch.empty(1,emb_dim)
 
 		for n, (images, labels) in enumerate(data_list):
 
@@ -65,10 +65,10 @@ def main():
 
 		embeddings = embeddings[1:] # remove the first empty/random row
 		embeddings = embeddings.detach().numpy()
-		np.save(emb_store_path + 'embeddings', embeddings)
+		np.save(emb_store_path + 'embeddings_' + str(emb_dim), embeddings)
 
 
-	elif MODE == "Dataset Gen":
+	elif MODE == "Dataset_Gen":
 
 		ae_train_x = torch.from_numpy(np.load(str(data_path)+"ae_train_x.npy"))
 		ae_test_x = torch.from_numpy(np.load(str(data_path)+"ae_test_x.npy"))
@@ -87,10 +87,10 @@ def main():
 
 if __name__ == '__main__':
 
-	MODE = 'Embedding Gen'	
-	MODEL_FOLDER = 'model/demo_autoencoder.pkl'
+	MODE = 'Embedding_Gen'	
+	MODEL_FOLDER = 'model/demo_autoencoder_197.pkl'
 	
-	if MODE == 'Image Gen':
+	if MODE == 'Image_Gen':
 
 		## For image generating mode
 		DATA_FOLDER = './torch_data/VGAN/MNIST'
@@ -100,15 +100,16 @@ if __name__ == '__main__':
 		LIST_OF_NUM = [i for i in range(10)] # list of digits to be generated
 		NUM_COUNT = 2 # number of generated instances for each digit
 
-	elif MODE == 'Embedding Gen':
+	elif MODE == 'Embedding_Gen':
 
 		## For Encodiing mode
 		EMBEDDING = './embeddings'
 		make_dir(EMBEDDING)
+		emb_dim = 99 # 99 = (1,99)
 		data_path = "Data/train_test_final/"
 		emb_store_path =  "embeddings/"
 
-	elif MODE == 'Dataset Gen':
+	elif MODE == 'Dataset_Gen':
 
 		## For Dataset Gen mode
 		data_path = 'Data/'
