@@ -6,7 +6,7 @@ import pickle
 import random
 import numpy as np
 sys.path.append("..")
-#from Autoencoders.network import *
+from Autoencoders.network import *
 from Autoencoders.torch_utils import *
 
 
@@ -44,7 +44,6 @@ class Numerical(object):
 		relevant_idx = [int(i) for i in relevant_idx]
 
 		return relevant_idx
-		emb_train = emb[relevant_idx]
 
 
 	def __get_dataset(self):
