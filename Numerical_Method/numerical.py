@@ -5,6 +5,7 @@ import scipy.misc
 import pickle
 import random
 import numpy as np
+from collections import Counter
 sys.path.append("..")
 from Autoencoders.network import *
 from Autoencoders.torch_utils import *
@@ -73,14 +74,15 @@ class Numerical(object):
 		eucl_dist_sorted.sort()
 
 		## Pick first k elements
+		predictions = list() 
 		temp_first_k = eucl_dist_sorted[:k]
-		temp_labels = [digit[1] for digit in temp_first_k]
-
-		## Pick label that has majority count and append to prediction list
-		temp_list = [temp_labels.count(i) for i in temp_labels]
-		prediction = temp_labels[temp_list.index(max(temp_list))]
 		
-		return prediction
+		count = Counter([i[1] for i in temp_first_k]) 
+		for i in sorted(count.items(),key=lambda x: -x[1]): 
+			predictions.append(["Prob number is {}  = {}".format(i[0], i[1]/k )]) 
+	
+		
+		return predictions
 
 
 if __name__ == '__main__':
