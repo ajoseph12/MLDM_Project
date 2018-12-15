@@ -44,10 +44,10 @@ def main():
 	elif MODE == "Embedding_Gen":
 		
 		## Load the datasets
-		train_X = torch.from_numpy(np.load(data_path + "train_X.npy"))
+		train_X = torch.from_numpy(np.load(data_path + "train_X_b.npy"))
 		train_Y = torch.from_numpy(np.load(data_path + "train_Y.npy"))
 		train_Y = train_Y.unsqueeze(1)
-		test_X = torch.from_numpy(np.load(data_path + "test_X.npy"))
+		test_X = torch.from_numpy(np.load(data_path + "test_X_b.npy"))
 		test_Y = torch.from_numpy(np.load(data_path + "test_Y.npy"))
 		test_Y = test_Y.unsqueeze(1)
 		data_list = [(train_X, train_Y), (test_X, test_Y)]
@@ -105,7 +105,7 @@ if __name__ == '__main__':
 		## For Encodiing mode
 		EMBEDDING = './embeddings'
 		make_dir(EMBEDDING)
-		emb_dim = 99 # 99 = (1,99)
+		emb_dim = 197 # 99 = (1,99)
 		data_path = "Data/train_test_final/"
 		emb_store_path =  "embeddings/"
 

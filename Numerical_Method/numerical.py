@@ -16,7 +16,8 @@ from Autoencoders.torch_utils import *
 class Numerical(object):
 
 
-	def __init__(self, image_input, dataset_path = 'Numerical_Method/data/embeddings_197.npy', relevant_idx_path = 'Numerical_Method/relevant_idx',
+	def __init__(self, image_input, dataset_path = 'Numerical_Method/data/embeddings_197.npy', 
+		relevant_idx_path = 'Numerical_Method/relevant_idx', 
 		ae_model_path = 'Autoencoders/model/demo_autoencoder_197.pkl', k = 50):
 
 		"""
@@ -93,7 +94,7 @@ if __name__ == '__main__':
 	MODEL_FOLDER = '../Autoencoders/model/demo_autoencoder_197.pkl'
 	image_input = np.random.rand(28,28)
 	dataset_path = 'data/embeddings_{}.npy'.format(emb_dim)
-	relevant_idx_path = 'relevant_idx'
+	relevant_idx_path = 'relevant_idx_{}_b'.format(emb_dim)
 
 	num = Numerical(image_input, dataset_path, relevant_idx_path, MODEL_FOLDER, k)
 	print(num.prediction)
