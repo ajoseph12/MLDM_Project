@@ -23,7 +23,12 @@ def match_pattern(freeman_code_input, pattern):
         return -1
 
 def _binary_distance(a, b):
-    return abs(a-b)
+    difference = abs(a-b)
+    if difference > 4:
+        return 8 - difference
+    else:
+        return difference
+    
 
 def _hamming_distance(a, b):
     return bin(a^b).count('1')
@@ -44,8 +49,11 @@ def match_class(freeman_code_input):
                     pattern_count += 1
                     relevance_criteria = distance/len(pattern_array)
                     relevance_criteria_count += relevance_criteria
-        norm_rcc = relevance_criteria_count/pattern_count
-        matches_array.append(norm_rcc)
+        if pattern_count > 0:
+            norm_rcc = relevance_criteria_count/pattern_count
+            matches_array.append(norm_rcc)
+        else:
+            matches_array.append(1000000000)
     index_min = min(range(len(matches_array)), key=matches_array.__getitem__)
     return index_min
 
@@ -60,11 +68,12 @@ def acc_testing():
             len_freem = len(freeman_codes)
             for freeman_code in freeman_codes:
                 code_count += 1
-                print('Now checking ' + str(code_count) + ' of ' + str(len_freem))
+                if code_count%1000 == 0:
+                    print('Now checking ' + str(code_count) + ' of ' + str(len_freem))
                 fc_array = list(map(float, freeman_code.split(' ')))
                 label = match_class(fc_array)
                 if label == x:
                     positive_count += 1
         print('Accuracy for ' + str(x) + ': ' + str((positive_count/code_count)*100))
 
-print(match_class([3, 3, 3, 3, 3, 4, 4, 3, 4, 4, 5, 4, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 5, 7, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 3, 3, 5, 4, 4, 4, 4, 4, 7, 7, 0, 7, 0, 6, 6, 5, 5, 5, 4, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 1, 0, 7, 0, 0, 7, 7, 0, 7, 1]))
+print(match_class([3, 3, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 7, 7, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]))

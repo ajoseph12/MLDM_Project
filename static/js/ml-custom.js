@@ -52,7 +52,7 @@ function save(){
   c1.height = 28
   ctx1.fillStyle = "#000000";
   ctx1.fillRect(0, 0, c1.width, c1.height);
-  ctx1.drawImage(c, 4, 4, 20, 20);
+  ctx1.drawImage(c, 1, 1, 26, 26);
   document.getElementById('img').src = c1.toDataURL();
   document.getElementById('c').style.display = 'none';
   document.getElementById('canvas-button-css').style.display = 'none';
@@ -62,7 +62,6 @@ function save(){
   document.getElementById("instruction-text-draw").innerHTML = "Rendered 28x28 Matrix";
   document.getElementById('table-matrix').style.display = 'block';
   hidden = true
-
   var imgData = ctx1.getImageData(0, 0, 28, 28);
   var imgBlack = []
   for (var i = 0; i < imgData.data.length; i += 4) {
@@ -123,11 +122,26 @@ $('#else').click(function(){
     $.ajax
     ({
         type: "POST",
-        url: 'http://localhost:5000/identify-digit',
+        url: 'http://localhost:5000/identify-digit-numerical',
         contentType: 'application/json',
         data: JSON.stringify({ "imageData": data }),
-        success: function () {
-            alert("Thanks!");
+        success: function (predictionObj) {
+            alert(predictionObj);
+        }
+    })
+});
+
+$('#elseelse').click(function(){
+    data = $('#current-matrix-data').text()
+    console.log(data)
+    $.ajax
+    ({
+        type: "POST",
+        url: 'http://localhost:5000/identify-digit-structural',
+        contentType: 'application/json',
+        data: JSON.stringify({ "imageData": data }),
+        success: function (predictionObj) {
+            alert(JSON.stringify(predictionObj));
         }
     })
 });
