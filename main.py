@@ -2,7 +2,7 @@ from flask import Flask as fl, render_template, request, jsonify
 import numpy as np
 from Numerical_Method.numerical import Numerical
 from Structured_Method_For_Platform.tool_for_freeman_code_gen import *
-from Structured_Method_For_Platform.edit_distance_matrix_generation import *
+#from Structured_Method_For_Platform.edit_distance_matrix_generation import *
 from Autoencoders.network import *
 import json
 from flask import Response
@@ -25,12 +25,13 @@ for the image matrix input]
 @app.route('/identify-digit-numerical',methods=['GET', 'POST'])
 def identify_digit_numerical():
 
+
     imageMatrix = request.json['imageData']
     imageMatrix = imageMatrix[1:-1]
     imageMatrix = [int(x) for x in imageMatrix.split(",")]
     imageMatrix = np.array(imageMatrix).reshape(28,28)
     numerical = Numerical(imageMatrix)
-    print(numerical.prediction)
+    #print(numerical.prediction)
     return str(numerical.prediction)
 
 @app.route('/identify-digit-structural',methods=['GET', 'POST'])
