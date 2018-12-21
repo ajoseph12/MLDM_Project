@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ml-custom.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sudoku-custom.css') }}">
     <script src="{{ url_for('static', filename='js/vendor/modernizr-2.8.3.min.js') }}"></script>
 
     <!--[if lt IE 9]>
@@ -61,7 +62,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#home-page">Home</a></li>
                     <li><a href="#demo-page">Demo</a></li>
-                    <li><a href="#feature-page">About the Project</a></li>
+                    <li><a href="#sudoku-page">Sudoku</a></li>
+                    <li><a href="#feature-page">About Project</a></li>
                     <li><a href="#about-us-page">About Us</a></li>
                 </ul>
             </nav>
@@ -127,7 +129,45 @@
                 <p>Rendered 28x28 Image</p>
             </div>
             <div class="row canvas-row-css">
-                <img id="img" class="canvas-img-css" width='500' height='500' hidden>
+                <div class="canvas-img-css-parent row">
+                    <div class="col-md-6">
+                        <img id="img" class="canvas-img-css" width='500' height='500' hidden>
+                    </div>
+                    <div id="return_data" class="canvas-return-css col-md-6" hidden>
+                        <div class="panel panel-warning">
+                          <div class="panel-heading canvas-panel-style-options"><b>Prediction</b></div>
+                          <div class="panel-body">
+                            <span id="method-text">Please Select a Prediction Method</span><br>
+                              <table class="table table-borderless" id="pred-table">
+                                  <tr>
+                                    <td colspan="2" class="bg-success">
+                                        <span id="num1" style="font-size: 15rem">-</span>&nbsp;&nbsp;
+                                        <span id="acc1" style="font-size: 5rem">-%</span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="bg-danger" width="50%">
+                                        <span style="font-size: 5rem" id="num2">-</span>&nbsp;&nbsp;
+                                        <span id="acc2" style="font-size: 2rem">-%</span>
+                                    </td>
+                                    <td class="bg-warning" width="50%">
+                                        <span style="font-size: 5rem" id="num3">-</span>&nbsp;&nbsp;
+                                        <span id="acc3" style="font-size: 2rem">-%</span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>&nbsp;
+                                        <button type="button" class="btn btn-success" id="visualize" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">
+                                            View patterns mined using Prefix-Span for this digit
+                                        </button>
+                                    </td>
+                                  </tr>
+                                </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <canvas id='c' class="canvas-css" width='500' height='500' ></canvas>
             </div>
             <div class="row canvas-button-css" id="canvas-button-css">
@@ -159,7 +199,7 @@
                                 <button class="btn btn-success"  data-toggle="modal" data-target="#analyseModal">Predict Number</button>
                             </div>
                             <div class="col-md-4">
-                                <button class="btn btn-danger" id="somethingelse">Sequence Mining</button>
+                                <button class="btn btn-danger" id="somethingelse">Sequence Mining - Freeman Code Matching</button>
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-warning" id="reset-all" onclick="resetAll()">Cancel and Redraw</button>
@@ -275,6 +315,93 @@
         </div>
     </section>
 
+    <!-- sudoku -->
+    <section class="gray-bg section-padding" id="sudoku-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+                    <div class="page-title" style="margin-bottom: 30px !important;">
+                        <h2>DIGITRECOGML Sudoku</h2>
+                        <p>Play sudoku and we'll recognize the digits for you!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="text-align: center" id="sudoku-row">
+                <div class="col-md-6 sudoku-col">
+                    <table class="table table-bordered table-dark table-hover" id="sudoku-table" align="center">
+                      <tbody>
+                        <tr>
+                          <td>
+                              <div class="cell-content" id="col1row1">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col2row1">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col3row1">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col4row1">#</div>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td>
+                              <div class="cell-content" id="col1row2">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col2row2">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col3row2">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col4row2">#</div>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td>
+                              <div class="cell-content" id="col1row3">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col2row3">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col3row3">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col4row3">#</div>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td>
+                              <div class="cell-content" id="col1row4">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col2row4">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col3row4">#</div>
+                          </td>
+                          <td>
+                              <div class="cell-content" id="col4row4">#</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <canvas id='csudoku' class="sudoku-canvas-css" width='500' height='500' >
+                </div>
+            </div>
+            <div class="row" style="text-align: center">
+                <button class="btn btn-success">Start New Game</button>
+                <button class="btn btn-success">Clear Canvas</button>
+                <button class="btn btn-success">Detect</button>
+            </div>
+        </div>
+    </section>
+
+
     <footer class="footer-area relative sky-bg" id="contact-page">
         <div class="absolute footer-bg"></div>
         <span id="current-matrix-data" hidden></span>
@@ -289,7 +416,6 @@
         </div>
     </footer>
 
-    #modal for all subsequent work
     <div class="modal fade" id="analyseModal" role="dialog">
         <div class="modal-dialog">
 
@@ -320,6 +446,54 @@
     </div>
 
 
+    <div class="modal fade" id="patternModal" role="dialog" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" id="modal-dialog-patt" style="overflow-y: scroll; max-height:85%;  margin-top: 40ex; margin-bottom:20ex;">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Mined Patterns for <span id="modal-digit"></span></h4>
+            </div>
+            <div class="modal-body" id="modal-body-patt">
+              <div class="container" id="patt_show">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="alertModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Make a prediction first!</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <div class="row">
+                      A predicted number is required to view mined patterns for that digit.<br>
+                      The patterns for the best match to the handwritten digit will then be displayed.
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+   
+
 
     <!--Vendor-JS-->
     <script src="{{ url_for('static', filename='js/vendor/jquery-1.12.4.min.js') }}"></script>
@@ -334,6 +508,7 @@
     <!--Main-active-JS-->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ml-custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sudoku-custom.js') }}"></script>
 </body>
 
 </html>

@@ -9,10 +9,15 @@
 }
 
 .canvas-img-css {
-    border-style:solid;
-    border-width:2px;
-    border-color:#138fc2;
     margin-bottom:8px;
+}
+
+.canvas-return-css {
+    width:500px; 
+    height:500px;
+    margin-bottom:8px;
+    min-width:500px;
+    overflow: hidden;
 }
 
 .canvas-button-css {
@@ -106,4 +111,20 @@
 
 #analyseModal {
     text-align:center;
+}
+
+.inline1 { display: inline-block !important; }
+
+#pred-table {
+  table-layout: fixed;
+  margin-bottom: 0px;
+}
+
+#modal-body-patt {
+  height: 600px;
+  overflow-y: auto;
+}
+
+#modal-dialog-patt{
+      overflow-y: initial !important
 }

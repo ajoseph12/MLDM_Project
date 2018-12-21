@@ -1,4 +1,8 @@
 import os
+import ast
+import numpy as np
+import matplotlib.pyplot as plt
+import glob
 """
     the methods here are to:
     1) return most relevant matched class for a given freeman code
@@ -43,7 +47,8 @@ def match_class(freeman_code_input):
         with open(os.path.join(pattern_dir, "./filtered_patterns/" + str(x) + ".txt"), mode='r') as pattern_file:
             patterns = pattern_file.readlines()
             for pattern in patterns:
-                pattern_array = list(map(int, pattern.split(' #SUP:')[0].split(' ')[:-1]))
+                pattern_array = ast.literal_eval(pattern)
+                print(pattern_array)
                 distance = match_pattern(freeman_code_input, pattern_array)
                 if distance != -1:
                     pattern_count += 1
@@ -70,10 +75,52 @@ def acc_testing():
                 code_count += 1
                 if code_count%1000 == 0:
                     print('Now checking ' + str(code_count) + ' of ' + str(len_freem))
-                fc_array = list(map(float, freeman_code.split(' ')))
+                fc_array = list(map(float, freeman_code.split(' ')[:-2 or None]))
                 label = match_class(fc_array)
                 if label == x:
                     positive_count += 1
         print('Accuracy for ' + str(x) + ': ' + str((positive_count/code_count)*100))
 
-print(match_class([3, 3, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 7, 7, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0]))
+def get_visualized_patterns(digit):
+    pattern_dir = os.path.dirname(__file__)
+    mined_patterns = []
+    with open(os.path.join(pattern_dir, "./filtered_patterns/" + str(digit) + ".txt"), mode='r') as pattern_file:
+        patterns = pattern_file.readlines()
+        for pattern in patterns:
+            pattern_array = ast.literal_eval(pattern)
+            mined_patterns.append(pattern_array)
+
+    visualized = []
+    files = glob.glob('static/images/seq_min_res/*')
+    for f in files:
+        os.remove(f)
+
+    for index, mined_pattern in enumerate(mined_patterns):
+        imgmatrix = get_image_matrix_from_freemancode(mined_pattern)
+        plt.imshow(imgmatrix, cmap='binary', vmin=0, vmax=1)
+        plt.axis('off')
+        plt.savefig('static/images/seq_min_res/' + str(index) + '.png')
+        visualized.append(mined_pattern)
+    return visualized
+
+
+
+def get_image_matrix_from_freemancode(freeman_code):
+    img = np.zeros((40,40))
+
+    x, y = 20, 20 
+    img[y][x] = 1
+    for direction in freeman_code:
+        if direction in [1,2,3]:
+            y -= 1
+        if direction in [5,6,7]:
+            y += 1
+        if direction in  [3,4,5]:
+            x -= 1
+        if direction in [0,1,7]:
+            x += 1
+
+        img[y][x] = 1
+    return img
+
+#get_image_matrix_from_freemancode([4, 3, 4, 4, 4, 4, 5, 5,3, 3, 3, 3, 3, 3, 3])

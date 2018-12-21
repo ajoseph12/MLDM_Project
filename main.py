@@ -45,14 +45,24 @@ def identify_digit_structural():
     imageMatrix = [int(x) for x in imageMatrix.split(",")]
     imageMatrix = np.array(imageMatrix).reshape(28,28)
     freeman_code = regenerative_freemancode(imageMatrix)
-    lb1, lb2, pb1, pb2, _ = get_nearest_neighbours(train_samples, freeman_code, matrix,average_matrix, k=50)
+    print(freeman_code)
+    try:
+        lb1, lb2, pb1, pb2, _ = get_nearest_neighbours(train_samples, freeman_code, matrix,average_matrix, k=50)
+    except:
+        return_data =  { 
+        'lb1' : 0, 
+        'lb2' : 0 , 
+        'pb1' : 0,
+        'pb2' : 0,
+        } 
+        return Response(json.dumps(return_data),  mimetype='application/json')
     print(lb1, lb2, pb1, pb2)
-    return_data = [ { 
-        "lb1" : lb1, 
-        "lb2" : lb2 , 
-        "pb1" : pb1,
-        "pb2" : pb2
-    } ]
+    return_data =  { 
+        'lb1' : lb1, 
+        'lb2' : lb2 , 
+        'pb1' : pb1,
+        'pb2' : pb2,
+    } 
     return Response(json.dumps(return_data),  mimetype='application/json')
 
 @app.route('/sequence-mining-pred',methods=['GET', 'POST'])

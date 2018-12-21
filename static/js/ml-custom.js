@@ -58,9 +58,16 @@ function save(){
   document.getElementById('canvas-button-css').style.display = 'none';
   document.getElementById('rendered-image-button').style.display = 'block';
   document.getElementById('img').style.display = 'inline';
+  document.getElementById('return_data').style.display = 'block';
   document.getElementById('instruction-text-img').style.display = 'inline';
   document.getElementById("instruction-text-draw").innerHTML = "Rendered 28x28 Matrix";
   document.getElementById('table-matrix').style.display = 'block';
+  $("#num1").text('-')
+  $("#acc1").text('-%')
+  $("#num2").text('-')
+  $("#acc2").text('-%')
+  $("#num3").text('-')
+  $("#acc3").text('-%')
   hidden = true
   var imgData = ctx1.getImageData(0, 0, 28, 28);
   var imgBlack = []
@@ -96,6 +103,7 @@ function resetAll() {
   document.getElementById('canvas-button-css').style.display = 'block';
   document.getElementById('rendered-image-button').style.display = 'none';
   document.getElementById('img').style.display = 'none';
+  document.getElementById('return_data').style.display = 'none';
   document.getElementById('instruction-text-img').style.display = 'none';
   document.getElementById("instruction-text-draw").innerHTML = "Draw your Digit below:";
   document.getElementById('matrix-body').innerHTML = '';
@@ -126,7 +134,21 @@ $('#else').click(function(){
         contentType: 'application/json',
         data: JSON.stringify({ "imageData": data }),
         success: function (predictionObj) {
-            alert(predictionObj);
+            document.getElementById('return_data').style.display = 'block';
+            $("#method-text").text("Using Numerical method")
+            $("#num1").text(predictionObj[0][0])
+            $("#acc1").text(predictionObj[0][1]*100 + '%')
+            $("#num2").text(predictionObj[1][0])
+            $("#acc2").text(predictionObj[1][1]*100 + '%')
+            if(predictionObj.length > 2) {
+              $("#num3").text(predictionObj[2][0])
+              $("#acc3").text(predictionObj[2][1]*100 + '%')
+            }
+            else {
+              $("#num3").text('-')
+              $("#acc3").text('-')
+            }
+            $('#analyseModal').modal('hide');
         }
     })
 });
@@ -141,7 +163,83 @@ $('#elseelse').click(function(){
         contentType: 'application/json',
         data: JSON.stringify({ "imageData": data }),
         success: function (predictionObj) {
-            alert(JSON.stringify(predictionObj));
+            returned_data = predictionObj
+            document.getElementById('return_data').style.display = 'block';
+            $("#method-text").text("Using Structural method")
+            $("#num1").text(parseInt(returned_data.lb1))
+            $("#acc1").text(parseFloat(returned_data.pb1*100).toFixed(2) + '%')
+            $("#num2").text(parseInt(returned_data.lb2))
+            $("#acc2").text(parseFloat(returned_data.pb2*100).toFixed(2) + '%')
+            if(returned_data.lb3) {
+              $("#num3").text(parseInt(returned_data.lb3))
+              $("#acc3").text(parseFloat(returned_data.lb3*100).toFixed(2) + '%')
+            }
+            else {
+              $("#num3").text('-')
+              $("#acc3").text('-')
+            }
+            $('#analyseModal').modal('hide');
         }
     })
+});
+
+
+$('#somethingelse').click(function(){
+    data = $('#current-matrix-data').text()
+    console.log(data)
+    $.ajax
+    ({
+        type: "POST",
+        url: 'http://localhost:5000/sequence-mining-pred',
+        contentType: 'application/json',
+        data: JSON.stringify({ "imageData": data }),
+        success: function (predictionObj) {
+            document.getElementById('return_data').style.display = 'block';
+            $("#method-text").text("Using Freeman Code Matching")
+            $("#num1").text(predictionObj)
+            $("#acc1").text('-%')
+            $("#num2").text('-')
+            $("#acc2").text('-%')
+            $("#num3").text('-')
+            $("#acc3").text('-%')
+            $('#analyseModal').modal('hide');
+        }
+    })
+});
+
+$('#visualize').click(function(){
+    data = $('#num1').text()
+    if (data == '-') {
+      $('#alertModal').modal('show')
+      return false
+    }
+    $.ajax
+    ({
+        type: "POST",
+        url: 'http://localhost:5000/visualized-patterns',
+        contentType: 'application/json',
+        data: JSON.stringify({ "digit": data }),
+        success: function (predictionObj) {
+            document.getElementById('return_data').style.display = 'block';
+            patternArray = predictionObj
+            patternHtml = "<div class='row'>"
+            var j = 0
+            patternArray.forEach(function (value, i) {
+              j++
+              patternHtml += "<div class='col-md-3'><img src='/static/images/seq_min_res/" +
+                i + ".png'><br><span>" + value + "</span></div>"
+              if(j == 4) {
+                if(patternArray.length - 1 > i) {
+                  patternHtml += "</div><div class='row'>"
+                }
+                j = 0
+              }
+            });
+            patternHtml += "</div>"
+            $("#modal-digit").text($('#num1').text())
+            $('#patt_show').html(patternHtml)
+            $('#patternModal').modal('show')
+        }
+    })
+
 });
