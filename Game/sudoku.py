@@ -35,7 +35,7 @@ class Sudoku(object):
 
 
 def handler(signum, frame):
-    #print("Forever is over")
+    print("Forever is over")
     raise Exception("end of time") 
 
 def loop_forever():
@@ -52,7 +52,7 @@ def main():
 
         try:
             s = Sudoku(dim,num_list)
-            print(s.sudoku)
+            return s.sudoku
         
         except:
             continue

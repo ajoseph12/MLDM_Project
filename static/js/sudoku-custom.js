@@ -95,3 +95,19 @@ $(document).ready(function(){
       paintsudoku = false
       hiddensudoku = false
     }
+
+    $('#recognize-sudoku').click(function(){
+    data = $('#current-matrix-datasudoku').text()
+    console.log(data)
+    $.ajax
+    ({
+        type: "POST",
+        url: 'http://localhost:5000/identify-digit-numerical',
+        contentType: 'application/json',
+        data: JSON.stringify({ "imageData": data }),
+        success: function (predictionObj) {
+            alert(predictionObj[0][0])
+        }
+    })
+});
+
