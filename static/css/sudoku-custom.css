@@ -1,0 +1,26 @@
+#sudoku-row  table {
+    width:30% !important;
+}
+#sudoku-row  td {
+    width:12.5%;
+    position:relative;
+}
+#sudoku-row  td:after{
+    content:'';
+    display:block;
+    margin-top:100%;
+}
+#sudoku-row td .cell-content {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:black;
+}
+
+#sudoku-row .cell-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
