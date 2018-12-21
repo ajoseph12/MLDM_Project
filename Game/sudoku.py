@@ -51,8 +51,6 @@ def main():
         signal.alarm(2)
 
         try:
-            #loop_forever()
-            
             s = Sudoku(dim,num_list)
             print(s.sudoku)
         
@@ -60,9 +58,6 @@ def main():
             continue
 
         break
-
-
-
 
 
 if __name__ == '__main__':
