@@ -2,11 +2,12 @@ from flask import Flask as fl, render_template, request, jsonify
 import numpy as np
 from Numerical_Method.numerical import Numerical
 from Structured_Method_For_Platform.tool_for_freeman_code_gen import *
-#from Structured_Method_For_Platform.edit_distance_matrix_generation import *
+from Structured_Method_For_Platform.edit_distance_matrix_generation import *
 from Autoencoders.network import *
 import json
 from flask import Response
 import pandas as pd
+from Sequence_Mining.sequence_mining import *
 
 #convert the image matrix to freeman code
 
@@ -25,14 +26,12 @@ for the image matrix input]
 @app.route('/identify-digit-numerical',methods=['GET', 'POST'])
 def identify_digit_numerical():
 
-
     imageMatrix = request.json['imageData']
     imageMatrix = imageMatrix[1:-1]
     imageMatrix = [int(x) for x in imageMatrix.split(",")]
     imageMatrix = np.array(imageMatrix).reshape(28,28)
     numerical = Numerical(imageMatrix)
-    #print(numerical.prediction)
-    return str(numerical.prediction)
+    return Response(json.dumps(numerical.prediction),  mimetype='application/json')
 
 @app.route('/identify-digit-structural',methods=['GET', 'POST'])
 def identify_digit_structural():
@@ -56,6 +55,23 @@ def identify_digit_structural():
     } ]
     return Response(json.dumps(return_data),  mimetype='application/json')
 
+@app.route('/sequence-mining-pred',methods=['GET', 'POST'])
+def sequence_mining_pred():
 
+    imageMatrix = request.json['imageData']
+    imageMatrix = imageMatrix[1:-1]
+    imageMatrix = [int(x) for x in imageMatrix.split(",")]
+    imageMatrix = np.array(imageMatrix).reshape(28,28)
+    #code pour obtenir le freemancode de img matrix, et pour match_class ici
+    return '3'
+
+
+@app.route('/visualized-patterns',methods=['GET', 'POST'])
+def visualized_patterns():
+
+    digit = int(float(request.json['digit']))
+    visualized = get_visualized_patterns(digit)
+    print(visualized)
+    return Response(json.dumps(visualized),  mimetype='application/json')
 if __name__ == "__main__":
     app.run()
