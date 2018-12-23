@@ -12,9 +12,19 @@ ctx.fillRect(0, 0, c.width, c.height);
 ctx.fillStyle = '#FFFFFF';
 var paint = false
 var hidden = false
-window.onmousedown = toggle
-window.onmousemove = draw
-window.onmouseup = drawoff
+
+
+$( "#c" ).mousedown(function(e) {
+  toggle()
+});
+
+$( "#c" ).mousemove(function(e) {
+  draw(e, this.pointerThickness)
+});
+
+$( "#c" ).mouseup(function(e) {
+  drawoff()
+});
 
 //set default thickness
 var pointerThickness = 35;
@@ -31,7 +41,7 @@ function toggle(){
 function draw(e, pointerThickness){
   var rect =  c.getBoundingClientRect();
   // console.log(this.pointerThickness)
-  if (paint && !hidden)  ctx.fillRect(e.x - rect.left,e.y - rect.top,this.pointerThickness,this.pointerThickness)
+  if (paint && !hidden)  ctx.fillRect(e.clientX - rect.left,e.clientY - rect.top,this.pointerThickness,this.pointerThickness)
 }
 
 function drawoff(){
@@ -136,13 +146,13 @@ $('#else').click(function(){
         success: function (predictionObj) {
             document.getElementById('return_data').style.display = 'block';
             $("#method-text").text("Using Numerical method")
-            $("#num1").text(predictionObj[0][0])
-            $("#acc1").text(predictionObj[0][1]*100 + '%')
-            $("#num2").text(predictionObj[1][0])
-            $("#acc2").text(predictionObj[1][1]*100 + '%')
+            $("#num1").text(parseInt(predictionObj[0][0]))
+            $("#acc1").text(parseFloat(predictionObj[0][1]*100).toFixed(2) + '%')
+            $("#num2").text(parseInt(predictionObj[1][0]))
+            $("#acc2").text(parseFloat(predictionObj[1][1]*100).toFixed(2) + '%')
             if(predictionObj.length > 2) {
-              $("#num3").text(predictionObj[2][0])
-              $("#acc3").text(predictionObj[2][1]*100 + '%')
+              $("#num3").text(parseInt(predictionObj[2][0]))
+              $("#acc3").text(parseFloat(predictionObj[2][1]*100).toFixed(2) + '%')
             }
             else {
               $("#num3").text('-')
@@ -155,6 +165,7 @@ $('#else').click(function(){
 
 $('#elseelse').click(function(){
     data = $('#current-matrix-data').text()
+    $('#loaderh').show()
     console.log(data)
     $.ajax
     ({
@@ -179,6 +190,7 @@ $('#elseelse').click(function(){
               $("#acc3").text('-')
             }
             $('#analyseModal').modal('hide');
+            $('#loaderh').hide()
         }
     })
 });

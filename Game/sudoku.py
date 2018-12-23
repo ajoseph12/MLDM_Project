@@ -1,6 +1,6 @@
 import numpy as np
 import time
-import signal
+import timeout_decorator
 
 
 class Sudoku(object):
@@ -11,6 +11,7 @@ class Sudoku(object):
         self.num_list = num_list
         self.sudoku = self.__create_sudoku()
 
+    @timeout_decorator.timeout(2, use_signals=False, timeout_exception=ValueError('fucked'))
     def __create_sudoku(self):
 
         memory_dict = dict()
@@ -33,31 +34,18 @@ class Sudoku(object):
 
         return sudoku
 
-
-def handler(signum, frame):
-    print("Forever is over")
-    raise Exception("end of time") 
-
-def loop_forever():
-    while 1:
-        print('sec')
-        time.sleep(1)
+ 
 
 def main():
 
-    while True:
-        
-        signal.signal(signal.SIGALRM, handler)
-        signal.alarm(2)
-
-        try:
-            s = Sudoku(dim,num_list)
-            return s.sudoku
-        
-        except:
-            continue
-
-        break
+    try:
+        s = Sudoku()
+        print("Forever is over")
+        return s.sudoku
+    
+    except:
+        print('error')
+        main()
 
 
 if __name__ == '__main__':

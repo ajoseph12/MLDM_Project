@@ -8,6 +8,7 @@ import json
 from flask import Response
 import pandas as pd
 from Sequence_Mining.sequence_mining import *
+from Game.sudoku import *
 
 #convert the image matrix to freeman code
 
@@ -83,5 +84,14 @@ def visualized_patterns():
     visualized = get_visualized_patterns(digit)
     print(visualized)
     return Response(json.dumps(visualized),  mimetype='application/json')
+
+@app.route('/start-game',methods=['GET', 'POST'])
+def start_sudoku():
+
+    game_array = main()
+    return Response(json.dumps(game_array.tolist()),  mimetype='application/json')
+
+
+
 if __name__ == "__main__":
     app.run()
