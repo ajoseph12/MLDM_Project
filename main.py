@@ -92,6 +92,5 @@ def start_sudoku():
     return Response(json.dumps(game_array.tolist()),  mimetype='application/json')
 
 
-
 if __name__ == "__main__":
     app.run()
