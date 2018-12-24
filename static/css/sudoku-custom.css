@@ -23,6 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 8rem;
+    color: white;
 }
 
 .sudoku-canvas-css {
@@ -34,4 +36,16 @@
 .sudoku-col {
     height: 600px;
     overflow-y: auto;
+}
+
+.padded-buttons {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.correct-sudoku {
+    background-color: green!important;
+}
+.wrong-sudoku {
+    background-color: red!important;
 }

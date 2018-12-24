@@ -290,7 +290,7 @@
                             <img src="{{ url_for('static', filename='images/portfolio-icon-1.png') }}" alt="">
                         </div>
                         <h3>Sequence Mining</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quas nulla est adipisci,</p>
+                        <p>For mining approaches, we use the PrefixSpan sequence mining algorithm. After that, the distance from the freeman codes of the mined patterns is compared with an freeman coded digit handwritten digit input, to predict the likeliest input.</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -299,7 +299,7 @@
                             <img src="{{ url_for('static', filename='images/portfolio-icon-2.png') }}" alt="">
                         </div>
                         <h3>Machine Learning and Deep Learning</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quas nulla est adipisci,</p>
+                        <p>We use DNN/CNN/GANZ to create new examples to obtain a numerical representation of the image and apply a standard KNN with ecludian distance.</p>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -308,7 +308,7 @@
                             <img src="{{ url_for('static', filename='images/portfolio-icon-3.png') }}" alt="">
                         </div>
                         <h3>MNIST Database</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quas nulla est adipisci,</p>
+                        <p>Usr pixel tracking on the image array to encode the freeman codes for instances in our dataset. Once this is done, we use the Nearest Neighbours algo using the edit distance.</p>
                     </div>
                 </div>
             </div>
@@ -394,9 +394,9 @@
                 </div>
             </div>
             <div class="row" style="text-align: center">
-                <button class="btn btn-success">Start New Game</button>
-                <button class="btn btn-success">Clear Canvas</button>
-                <button class="btn btn-success">Detect</button>
+                <button class="btn btn-success padded-buttons" id="start-sudoku">Start New Game</button>
+                <button class="btn btn-danger padded-buttons" onclick="resetAll()">Clear Canvas</button>
+                <img id="imgsudoku" class="canvas-img-css" width='500' height='500' hidden>
             </div>
         </div>
     </section>
@@ -405,6 +405,7 @@
     <footer class="footer-area relative sky-bg" id="contact-page">
         <div class="absolute footer-bg"></div>
         <span id="current-matrix-data" hidden></span>
+        <span id="current-matrix-datasudoku" hidden></span>
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
@@ -428,10 +429,13 @@
             <div class="modal-body">
               <div class="container">
                   <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                           <button class="btn btn-primary" id="else">Use Numerical Methods</button>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-4">
+                          <div class="loader" id="loaderh" hidden></div>
+                      </div>
+                      <div class="col-md-4">
                           <button class="btn btn-danger" id="elseelse">Use Structural Methods</button>
                       </div>
                   </div>
@@ -481,6 +485,29 @@
                   <div class="row">
                       A predicted number is required to view mined patterns for that digit.<br>
                       The patterns for the best match to the handwritten digit will then be displayed.
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="sudokuAlertsModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Hello there!</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <div class="row" id="textMsg" style="text-align: center; font-size: 2rem;">
                   </div>
               </div>
             </div>
