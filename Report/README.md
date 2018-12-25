@@ -1,7 +1,9 @@
 Handwritten Digit Recognition using Machine Learning, Deep Learning and Metric Learning Approaches 
 ===============================================================================
 
-Report link : https://www.overleaf.com/2372177757gnmdrmkmngtf
+Report link : https://www.overleaf.com/2372177757gnmdrmkmngtf 
+
+Please follow instructions (with regard to usage of tenses) in this link while you write your respective parts : https://services.unimelb.edu.au/__data/assets/pdf_file/0009/471294/Using_tenses_in_scientific_writing_Update_051112.pdf
 
 Abstract (Allwyn)
 -----------
