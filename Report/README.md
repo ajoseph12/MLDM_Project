@@ -26,13 +26,13 @@ Algorithms
 * __Dataset__ - talk about the pipeline, the different sections in the pipeline and how did all of it come together (image of pipeline Mnist + DCGanz + Autoencoders)
 * __Embeddings__ - talk about the need for embeddings (capture non-linear features) and how did you go about putting it together. Also talk about the fact that you effectuated CNN on it to get most relevant embeddings for later use on structured method, numerical method and RE
 
-Structured Method (Allwyn)
+Structured Method (Rohil)
 ------------------------
 * __Idea__  - A rough summary as to what the section is about and what is one trying to achieve here
 * __Methodology__ - Describe the scientific/experimental approach employed to arrive at the desired results. Also do talk about the workarounds you came up with to decrease computation time.
 * __Results__ - Plot curves  : accuracy (number of neighbours vs accuracy) , time ( computation taken with and without work arounds), and other graphs you can think about
 
-Numerical Method (Rohil)
+Numerical Method (Allwyn)
 ------------------------
 * __Idea__  - A rough summary as to what the section is about and what is one trying to achieve here
 * __Methodology__ - Describe the scientific/experimental approach employed to arrive at the desired results. Also do talk about the dilemma faced using LMNN and how to arrived at the best k so as to bring up your accuracy.
