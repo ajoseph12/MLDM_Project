@@ -216,6 +216,8 @@ def provide_two_costs(test_instance, train_samples, average_matrix):
         next_label_df_copy.loc[idx, 'Distance_with_test_label'] = distance1
     second_example_selected = next_label_df_copy[
         next_label_df_copy['Distance_with_test_label'] == next_label_df_copy['Distance_with_test_label'].max()]
+    if len(second_example_selected) > 1:
+        second_example_selected = second_example_selected.iloc[0]
     cost2 = second_example_selected['Distance_with_test_label'].values
     cost2 = float(cost2[0])
     second_example_selected = second_example_selected.drop('Distance_with_test_label', axis=1)
@@ -233,8 +235,8 @@ if __name__ == "__main__":
     train_hdf = pd.read_hdf('/home/rohilrg/Documents/MLDM Project Data Files/train_freemancode_modified.hdf')
     # train_hdf = train_hdf.iloc[:2000]
     average_matrix = np.load('/home/rohilrg/Documents/MLDM Project Data Files/average_matrix.npy')
-    test_instance = pd.read_hdf('/home/rohilrg/Documents/MLDM Project Data Files/test_freemancode.hdf')
-    test_instance = test_instance.iloc[6000:6300]
+    test_instance = pd.read_hdf('/home/rohilrg/Documents/MLDM Project Data Files/train_test_final/test_freemancode.hdf')
+    test_instance = test_instance.iloc[6205:6300]
 
     matrix = np.load('/home/rohilrg/Downloads/matrix_with_edit_distance_modified.npy')
     start = timeit.default_timer()
