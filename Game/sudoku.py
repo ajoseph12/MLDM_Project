@@ -1,80 +1,109 @@
 import numpy as np
 import time
-import timeout_decorator
+import time
+import sys
+import random as rn
 
-def sudoku(size):
-    import time
-    start_time=time.time()
 
-    import sys
-    import random as rn
+class Sudoku(object):
 
-    mydict = {}
-    n = 0
+    def __init__(self, user_input,size = 4):
 
-    print('--started calculating--')
-    while len(mydict) < size:
-        n += 1
-        x = range(1, size+1)
-        testlist = rn.sample(x, len(x))
+        self.user_input = user_input
+        gen_puzzle = self.__sudoku(size)
+        self.final_arr = self.__transform(gen_puzzle)
 
-        isgood = True
-        for dictid,savedlist in mydict.items():
-            if isgood == False:
-                break
-            for v in savedlist:
-                if testlist[savedlist.index(v)] == v:
-                    isgood = False
+
+    def __sudoku(self, size):
+
+        mydict =  dict()
+        n = 0
+
+        while len(mydict) < size:
+            n += 1
+            x = range(1, size+1)
+            testlist = rn.sample(x, len(x))
+
+            isgood = True
+            for dictid,savedlist in mydict.items():
+                if isgood == False:
                     break
-
-        if isgood == True:
-            isgoodafterduplicatecheck = True
-            mod = len(mydict) % 3
-            dsavedlists = {}
-            dtestlists = {}
-            dcombindedlists = {}
-            for a in range(1,mod + 1):
-                savedlist = mydict[len(mydict) - a]               
-                for v1 in savedlist:
-                    modsavedlists = (savedlist.index(v1) / 3) % 3
-                    dsavedlists[len(dsavedlists)] = [modsavedlists,v1]
-                for t1 in testlist:
-                    modtestlists = (testlist.index(t1) / 3) % 3
-                    dtestlists[len(dtestlists)] = [modtestlists,t1]
-                for k,v2 in dsavedlists.items():
-                    dcombindedlists[len(dcombindedlists)] = v2
-                    dcombindedlists[len(dcombindedlists)] = dtestlists[k]
-            vsave = 0
-            lst1 = []
-            for k, vx in dcombindedlists.items():
-                vnew = vx[0]
-                if not vnew == vsave:
-                    lst1 = []
-                    lst1.append(vx[1])
-                else:
-                    if vx[1] in lst1:
-                        isgoodafterduplicatecheck = False
+                for v in savedlist:
+                    if testlist[savedlist.index(v)] == v:
+                        isgood = False
                         break
-                    else:
+
+            if isgood == True:
+                isgoodafterduplicatecheck = True
+                mod = len(mydict) % 3
+                dsavedlists = {}
+                dtestlists = {}
+                dcombindedlists = {}
+                for a in range(1,mod + 1):
+                    savedlist = mydict[len(mydict) - a]               
+                    for v1 in savedlist:
+                        modsavedlists = (savedlist.index(v1) / 3) % 3
+                        dsavedlists[len(dsavedlists)] = [modsavedlists,v1]
+                    for t1 in testlist:
+                        modtestlists = (testlist.index(t1) / 3) % 3
+                        dtestlists[len(dtestlists)] = [modtestlists,t1]
+                    for k,v2 in dsavedlists.items():
+                        dcombindedlists[len(dcombindedlists)] = v2
+                        dcombindedlists[len(dcombindedlists)] = dtestlists[k]
+                vsave = 0
+                lst1 = []
+                for k, vx in dcombindedlists.items():
+                    vnew = vx[0]
+                    if not vnew == vsave:
+                        lst1 = []
                         lst1.append(vx[1])
-                vsave = vnew
+                    else:
+                        if vx[1] in lst1:
+                            isgoodafterduplicatecheck = False
+                            break
+                        else:
+                            lst1.append(vx[1])
+                    vsave = vnew
 
-            if isgoodafterduplicatecheck == True:
+                if isgoodafterduplicatecheck == True:
+                    mydict[len(mydict)] = testlist
+        
 
-                mydict[len(mydict)] = testlist
-                print('success found', len(mydict), 'row')
+        return mydict
 
-    print('--finished calculating--')
-    total_time = time.time()-start_time
-    return mydict, n, total_time
+    def __transform(self, puzzle_dict):
 
-return_dict, total_tries, amt_of_time = sudoku(4)
-print('')
-print('--printing output--')
-for n,v in return_dict.items():
-    print(v)
-print('process took',total_tries,'tries in', round(amt_of_time,2), 'secs')
-print('-------------------')
+        temp_list = list()
+        temp_dict = dict()
+
+        for n,v in puzzle_dict.items():
+            temp_list.append(v)
+
+        temp_arr = np.array(temp_list)
+        #print(temp_arr)
+        
+        for i in range(1,5): 
+            temp_dict[i] = self.user_input[i-1]
+
+        for i in range(temp_arr.shape[0]):
+            for j in range(temp_arr.shape[1]):
+                temp_arr[i,j] = temp_dict[temp_arr[i,j]]
+
+        return temp_arr
+
+
+
+
+if __name__ == '__main__':
+    
+    s = Sudoku([0,8,7,6])
+    print(s.final_arr)
+
+
+
+
+
+
 
 """
 class Sudoku(object):
@@ -114,6 +143,7 @@ def main():
 
     try:
         s = Sudoku()
+        print("Forever is over")
         return s.sudoku
     
     except:
@@ -125,5 +155,35 @@ if __name__ == '__main__':
     dim = 4
     num_list = [1,4,8,9]
     main()
+
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=.65\linewidth]{Images/db1_d_1.png}
+        \caption{Detection on dataset 1}
+    \end{subfigure}
+    \begin{subfigure}
+        \centering
+         \includegraphics[width=.65\linewidth]{Images/db1_d_2.png}
+        \caption{Detection on dataset 1}
+    \end{subfigure}
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=.65\linewidth]{Images/db2_d_1.png}
+        \caption{Detection on dataset 2}
+    \end{subfigure}
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=.65\linewidth]{Images/db2_d_2.png}
+        \caption{Detection on dataset 2}
+    \end{subfigure}
+
+    \caption{Colour-Patch detection on images from datasets 1 and 2}
+    \label{yolo_detections}
+\end{figure}
+
 
 """
