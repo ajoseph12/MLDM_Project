@@ -158,7 +158,7 @@ function savesudoku(){
 
 }
 
-function resetAll() {
+function resetAllSudoku() {
   clearssudoku();
   paintsudoku = false
   hiddensudoku = false

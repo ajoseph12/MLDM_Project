@@ -53,7 +53,7 @@ class FilterPatterns:
                 with open(os.path.join(self.pattern_dir, "./filtered_patterns/" + str(x) + ".txt"), "w") as text_file:
                     for pattern_i in final_patterns:
                         print(pattern_i, file=text_file)
-            print("Filtering finished for: ", str(x))
+            print("Filtering finished for: ", str(x), 'with length after grouping: ', str(len(final_patterns)))
 
 #testing
 if __name__ == '__main__':

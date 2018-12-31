@@ -114,7 +114,6 @@ def main():
 
     try:
         s = Sudoku()
-        print("Forever is over")
         return s.sudoku
     
     except:
