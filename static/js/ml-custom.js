@@ -108,6 +108,7 @@ function save(){
 
 }
 function resetAll() {
+  console.log("resetAll called")
   clears();
   document.getElementById('c').style.display = 'inline';
   document.getElementById('canvas-button-css').style.display = 'block';

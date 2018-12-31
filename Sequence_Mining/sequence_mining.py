@@ -3,6 +3,7 @@ import ast
 import numpy as np
 import matplotlib.pyplot as plt
 import glob
+import random
 """
     the methods here are to:
     1) return most relevant matched class for a given freeman code
@@ -48,7 +49,7 @@ def match_class(freeman_code_input):
             patterns = pattern_file.readlines()
             for pattern in patterns:
                 pattern_array = ast.literal_eval(pattern)
-                print(pattern_array)
+                #print(pattern_array)
                 distance = match_pattern(freeman_code_input, pattern_array)
                 if distance != -1:
                     pattern_count += 1
@@ -90,6 +91,9 @@ def get_visualized_patterns(digit):
             pattern_array = ast.literal_eval(pattern)
             mined_patterns.append(pattern_array)
 
+    #randomly select  n patterns
+    if len(mined_patterns) > 8:
+        mined_patterns = random.sample(mined_patterns, 8)
     visualized = []
     files = glob.glob('static/images/seq_min_res/*')
     for f in files:
@@ -123,4 +127,4 @@ def get_image_matrix_from_freemancode(freeman_code):
         img[y][x] = 1
     return img
 
-#get_image_matrix_from_freemancode([4, 3, 4, 4, 4, 4, 5, 5,3, 3, 3, 3, 3, 3, 3])
+#acc_testing()
