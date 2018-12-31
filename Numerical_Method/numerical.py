@@ -16,9 +16,9 @@ from Autoencoders.torch_utils import *
 class Numerical(object):
 
 
-	def __init__(self, image_input, dataset_path = 'Numerical_Method/data/embeddings_197_b.npy', 
-		relevant_idx_path = 'Numerical_Method/relevant_idx', 
-		ae_model_path = 'Autoencoders/model/demo_autoencoder_197_b.pkl', k = 50):
+	def __init__(self, image_input, dataset_path = '../Autoencoders/embeddings/embeddings_197_b.npy', 
+		relevant_idx_path = 'Numerical_Method/relevant_idx_197_b', 
+		ae_model_path = 'Autoencoders/model/demo_autoencoder_197_b.pkl', k = 49):
 
 		"""
 		Objects instantiated on creating instance of the numerical class
@@ -51,7 +51,7 @@ class Numerical(object):
 	def __get_dataset(self):
 
 		train_emb = np.load(self.dataset_path)
-		train_emb = train_emb[self.relevant_idx]
+		#train_emb = train_emb[self.relevant_idx]
 
 		return train_emb
 
@@ -89,11 +89,11 @@ class Numerical(object):
 if __name__ == '__main__':
 	
 	emb_dim = 197
-	k = 50
+	k = 49
 
-	MODEL_FOLDER = '../Autoencoders/model/demo_autoencoder_197.pkl'
+	MODEL_FOLDER = '../Autoencoders/model/demo_autoencoder_197_b.pkl'
 	image_input = np.random.rand(28,28)
-	dataset_path = 'data/embeddings_{}.npy'.format(emb_dim)
+	dataset_path = '../Autoencoders/embeddings/embeddings_{}_b.npy'.format(emb_dim)
 	relevant_idx_path = 'relevant_idx_{}_b'.format(emb_dim)
 
 	num = Numerical(image_input, dataset_path, relevant_idx_path, MODEL_FOLDER, k)

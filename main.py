@@ -89,7 +89,6 @@ def visualized_patterns():
 def start_sudoku():
 
     game_array = main()
-    print(game_array)
     return Response(json.dumps(game_array.tolist()),  mimetype='application/json')
 
 
