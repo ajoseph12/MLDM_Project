@@ -91,13 +91,17 @@ class Sudoku(object):
 
         return temp_arr
 
+def main(user_input = [0,8,7,6]):
 
+    s = Sudoku(user_input)
+    #print(s.final_arr)
+    return s.final_arr
 
 
 if __name__ == '__main__':
+    main()
+
     
-    s = Sudoku([0,8,7,6])
-    print(s.final_arr)
 
 
 
