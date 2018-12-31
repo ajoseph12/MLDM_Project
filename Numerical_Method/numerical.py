@@ -16,9 +16,9 @@ from Autoencoders.torch_utils import *
 class Numerical(object):
 
 
-	def __init__(self, image_input, dataset_path = 'Numerical_Method/data/embeddings_197.npy', 
+	def __init__(self, image_input, dataset_path = 'Numerical_Method/data/embeddings_197_b.npy', 
 		relevant_idx_path = 'Numerical_Method/relevant_idx', 
-		ae_model_path = 'Autoencoders/model/demo_autoencoder_197.pkl', k = 50):
+		ae_model_path = 'Autoencoders/model/demo_autoencoder_197_b.pkl', k = 50):
 
 		"""
 		Objects instantiated on creating instance of the numerical class

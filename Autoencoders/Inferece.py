@@ -44,11 +44,11 @@ def main():
 	elif MODE == "Embedding_Gen":
 		
 		## Load the datasets
-		train_X = torch.from_numpy(np.load(data_path + "train_X.npy"))
-		train_Y = torch.from_numpy(np.load(data_path + "train_Y.npy"))
+		train_X = torch.from_numpy(np.load(data_path + "train_x_minst.npy"))
+		train_Y = torch.from_numpy(np.load(data_path + "train_y_minst.npy"))
 		train_Y = train_Y.unsqueeze(1)
-		test_X = torch.from_numpy(np.load(data_path + "test_X.npy"))
-		test_Y = torch.from_numpy(np.load(data_path + "test_Y.npy"))
+		test_X = torch.from_numpy(np.load(data_path + "test_x_minst.npy"))
+		test_Y = torch.from_numpy(np.load(data_path + "test_y_minst.npy"))
 		test_Y = test_Y.unsqueeze(1)
 		data_list = [(train_X, train_Y), (test_X, test_Y)]
 
@@ -65,7 +65,7 @@ def main():
 
 		embeddings = embeddings[1:] # remove the first empty/random row
 		embeddings = embeddings.detach().numpy()
-		np.save(emb_store_path + 'embeddings_mnist_' + str(emb_dim), embeddings)
+		np.save(emb_store_path + 'embeddings_{}_b'.format(str(emb_dim)) , embeddings)
 
 
 	elif MODE == "Dataset_Gen":
@@ -88,7 +88,7 @@ def main():
 if __name__ == '__main__':
 
 	MODE = 'Embedding_Gen'	
-	MODEL_FOLDER = 'model/demo_autoencoder_197.pkl'
+	MODEL_FOLDER = 'model/demo_autoencoder_197_b.pkl'
 	
 	if MODE == 'Image_Gen':
 
@@ -102,18 +102,18 @@ if __name__ == '__main__':
 
 	elif MODE == 'Embedding_Gen':
 
-		## For Encodiing mode
+		## For Encoding mode
 		EMBEDDING = './embeddings'
 		make_dir(EMBEDDING)
-		emb_dim = 197 # 99 = (1,99)
+		emb_dim = 197 # 197 = (1,197)
 		data_path = "../Dataset/data/train_test_final/"
 		emb_store_path =  "embeddings/"
 
 	elif MODE == 'Dataset_Gen':
 
 		## For Dataset Gen mode
-		data_path = 'Data/'
-		save_path = 'Data/'
+		data_path = '../Dataset/Data/'
+		save_path = '../Dataset/Data/'
 
 	main()
 
