@@ -51,7 +51,7 @@ class Numerical(object):
 	def __get_dataset(self):
 
 		train_emb = np.load(self.dataset_path)
-		#train_emb = train_emb[self.relevant_idx]
+		train_emb = train_emb[self.relevant_idx]
 
 		return train_emb
 
@@ -89,7 +89,7 @@ class Numerical(object):
 if __name__ == '__main__':
 	
 	emb_dim = 197
-	k = 49
+	k = 48
 
 	MODEL_FOLDER = '../Autoencoders/model/demo_autoencoder_197_b.pkl'
 	image_input = np.random.rand(28,28)
