@@ -18,7 +18,7 @@ class Numerical(object):
 
 	def __init__(self, image_input, dataset_path = '../Autoencoders/embeddings/embeddings_197_b.npy', 
 		relevant_idx_path = 'Numerical_Method/relevant_idx_197_b', 
-		ae_model_path = 'Autoencoders/model/demo_autoencoder_197_b.pkl', k = 48):
+		ae_model_path = 'Autoencoders/model/demo_autoencoder_197_b.pkl', k = 48, metric = True):
 
 		"""
 		Objects instantiated on creating instance of the numerical class
@@ -36,7 +36,7 @@ class Numerical(object):
 		self.relevant_idx = self.__relevant_idx(relevant_idx_path)
 		self.dataset = self.__get_dataset()
 		self.embedding = self.__autoencoder()
-		self.prediction = self.__knn(k)
+		self.prediction = self.__knn(k, metric)
 
 
 	def __relevant_idx(self, relevant_idx_path):
@@ -67,23 +67,49 @@ class Numerical(object):
 		return embedding
 
 
-	def __knn(self, k):
+	def __knn(self, k, metric):
 
 		## Calculate euclidean distance and sort 
-		eucl_dist = np.linalg.norm((self.embedding - self.dataset[:,:-1]), axis=1)
-		eucl_dist_sorted = [(eucl_dist[i], self.dataset[i,-1]) for i in range(len(self.dataset))]
-		eucl_dist_sorted.sort()
+		if not metric:
+			eucl_dist = np.linalg.norm((self.embedding - self.dataset[:,:-1]), axis=1)
+			eucl_dist_sorted = [(eucl_dist[i], self.dataset[i,-1]) for i in range(len(self.dataset))]
+			eucl_dist_sorted.sort()
+
+			
+		elif metric:
+
+			## Load the computed metric
+			matrix_m = np.load('matrix_m_40_b.npy')
+
+			## Calculate the distance of each test instance from train instances 
+			eucl_dist_sorted = self.__eucl_dist_metric(self.embedding, self.dataset, matrix_m)
+
 
 		## Pick first k elements
 		predictions = list() 
 		temp_first_k = eucl_dist_sorted[:k]
-		
+
+		## Percentage prediction of each number
 		count = Counter([i[1] for i in temp_first_k]) 
 		for i in sorted(count.items(),key=lambda x: -x[1]): 
 			predictions.append([str(i[0]), str(i[1]/k)]) 
-	
+
 		
 		return predictions
+
+
+	def __eucl_dist_metric(self, instance, dataset, matrix_m):
+		"""Calculates eucl dist for metric case"""
+
+		temp_inst = instance.reshape(1,-1)
+		temp_inst = temp_inst.repeat(len(dataset), axis=0)
+		difference = temp_inst - dataset[:,:-1]
+		eucl_dist = np.diag(np.sqrt(np.matmul(np.matmul(difference, matrix_m),difference.T)))
+		eucl_dist_sorted = [(eucl_dist[i], dataset[i,-1]) for i in range(len(dataset))]
+		eucl_dist_sorted.sort()
+
+		return eucl_dist_sorted
+
 
 
 if __name__ == '__main__':
@@ -95,8 +121,9 @@ if __name__ == '__main__':
 	image_input = np.random.rand(28,28)
 	dataset_path = '../Autoencoders/embeddings/embeddings_{}_b.npy'.format(emb_dim)
 	relevant_idx_path = 'relevant_idx_{}_b'.format(emb_dim)
+	metric = True
 
-	num = Numerical(image_input, dataset_path, relevant_idx_path, MODEL_FOLDER, k)
+	num = Numerical(image_input, dataset_path, relevant_idx_path, MODEL_FOLDER, k,metric)
 	print(num.prediction)
 
 
