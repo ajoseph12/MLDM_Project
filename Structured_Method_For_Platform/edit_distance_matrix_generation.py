@@ -217,7 +217,7 @@ def provide_two_costs(test_instance, train_samples, average_matrix):
     second_example_selected = next_label_df_copy[
         next_label_df_copy['Distance_with_test_label'] == next_label_df_copy['Distance_with_test_label'].max()]
     if len(second_example_selected) > 1:
-        second_example_selected = second_example_selected.iloc[0]
+        second_example_selected = second_example_selected.iloc[[0]]
     cost2 = second_example_selected['Distance_with_test_label'].values
     cost2 = float(cost2[0])
     second_example_selected = second_example_selected.drop('Distance_with_test_label', axis=1)
