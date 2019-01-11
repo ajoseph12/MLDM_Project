@@ -19,7 +19,7 @@ class Numerical(object):
 	def __init__(self, image_input, dataset_path = './Autoencoders/embeddings/embeddings_197_b.npy', 
 		relevant_idx_path = './Numerical_Method/relevant_idx_197_b', 
 		ae_model_path = './Autoencoders/model/demo_autoencoder_197_b.pkl', k = 48, metric = False):
-
+		#hello
 		"""
 		Objects instantiated on creating instance of the numerical classr
 
