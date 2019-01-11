@@ -16,12 +16,12 @@ from Autoencoders.torch_utils import *
 class Numerical(object):
 
 
-	def __init__(self, image_input, dataset_path = '../Autoencoders/embeddings/embeddings_197_b.npy', 
-		relevant_idx_path = 'Numerical_Method/relevant_idx_197_b', 
-		ae_model_path = 'Autoencoders/model/demo_autoencoder_197_b.pkl', k = 48, metric = True):
-
+	def __init__(self, image_input, dataset_path = './Autoencoders/embeddings/embeddings_197_b.npy', 
+		relevant_idx_path = './Numerical_Method/relevant_idx_197_b', 
+		ae_model_path = './Autoencoders/model/demo_autoencoder_197_b.pkl', k = 48, metric = False):
+		#hello
 		"""
-		Objects instantiated on creating instance of the numerical class
+		Objects instantiated on creating instance of the numerical classr
 
 		Args:
 		- image_input (nd.array): numpy array of dimension 28*28
@@ -51,7 +51,7 @@ class Numerical(object):
 	def __get_dataset(self):
 
 		train_emb = np.load(self.dataset_path)
-		train_emb = train_emb[self.relevant_idx]
+		# train_emb = train_emb[self.relevant_idx]
 
 		return train_emb
 
@@ -79,7 +79,7 @@ class Numerical(object):
 		elif metric:
 
 			## Load the computed metric
-			matrix_m = np.load('matrix_m_40_b.npy')
+			matrix_m = np.load('./Numerical_Method/matrix_m_40_b.npy')
 
 			## Calculate the distance of each test instance from train instances 
 			eucl_dist_sorted = self.__eucl_dist_metric(self.embedding, self.dataset, matrix_m)

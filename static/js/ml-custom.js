@@ -167,6 +167,7 @@ $('#else').click(function(){
 $('#elseelse').click(function(){
     data = $('#current-matrix-data').text()
     $('#loaderh').show()
+    $('#loader-text').show()
     console.log(data)
     $.ajax
     ({
@@ -192,6 +193,7 @@ $('#elseelse').click(function(){
             }
             $('#analyseModal').modal('hide');
             $('#loaderh').hide()
+            $('#loader-text').hide()
         }
     })
 });

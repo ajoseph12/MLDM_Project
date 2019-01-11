@@ -50,17 +50,31 @@ $(document).ready(function(){
         }
     });
 
+    //open popup for sudoku
+    $('#start-sudoku-not').click(function() {
+      $('#selectNumbersSudoku').modal('show')
+    });
+
     $('#start-sudoku').click(function() {
         gameActive = true
         $('.cell-content').css({'color':'white', 'background-color': 'black'})
         $('.cell-content').text('#')
+        var n1 = $("#number-1").val()
+        var n2 = $("#number-2").val()
+        var n3 = $("#number-3").val()
+        var n4 = $("#number-4").val()
 
+        if (!n1 || !n2 || !n3 || !n4 ) {
+          $('#textMsg').text('We need valid numbers to get a start!')
+          $('#sudokuAlertsModal').modal('show')
+        }
 
         $.ajax
         ({
           type: "POST",
           url: 'http://localhost:5000/start-game',
           contentType: 'application/json',
+          data: JSON.stringify({ "1": n1,"2": n2, "3": n3, "4": n4 }),
           success: function (predictionObj) {
                   array_values = predictionObj
                   sudokuMatrix = array_values

@@ -64,7 +64,7 @@ class Sudoku(object):
                         else:
                             lst1.append(vx[1])
                     vsave = vnew
-
+#Hello
                 if isgoodafterduplicatecheck == True:
                     mydict[len(mydict)] = testlist
         
@@ -94,7 +94,8 @@ class Sudoku(object):
 def main(user_input = [0,8,7,6]):
 
     s = Sudoku(user_input)
-    #print(s.final_arr)
+    print(user_input)
+    print(s.final_arr)
     return s.final_arr
 
 
