@@ -64,7 +64,7 @@ class Sudoku(object):
                         else:
                             lst1.append(vx[1])
                     vsave = vnew
-
+#Hello
                 if isgoodafterduplicatecheck == True:
                     mydict[len(mydict)] = testlist
         
