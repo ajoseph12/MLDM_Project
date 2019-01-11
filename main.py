@@ -47,6 +47,7 @@ def identify_digit_structural():
     imageMatrix = np.array(imageMatrix).reshape(28,28)
     freeman_code = regenerative_freemancode(imageMatrix)
     print(freeman_code)
+    #print('awesome')
     try:
         lb1, lb2, pb1, pb2, _ = get_nearest_neighbours(train_samples, freeman_code, matrix,average_matrix, k=50)
     except:
