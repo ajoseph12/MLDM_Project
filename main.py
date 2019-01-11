@@ -88,7 +88,12 @@ def visualized_patterns():
 @app.route('/start-game',methods=['GET', 'POST'])
 def start_sudoku():
 
-    game_array = main()
+    n1 = request.json['1']
+    n2 = request.json['2']
+    n3 = request.json['3']
+    n4 = request.json['4']
+    print(n1,n2,n3,n4)
+    game_array = main(user_input = [n1,n2,n3,n4])
     return Response(json.dumps(game_array.tolist()),  mimetype='application/json')
 
 

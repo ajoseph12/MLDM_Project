@@ -94,7 +94,8 @@ class Sudoku(object):
 def main(user_input = [0,8,7,6]):
 
     s = Sudoku(user_input)
-    #print(s.final_arr)
+    print(user_input)
+    print(s.final_arr)
     return s.final_arr
 
 

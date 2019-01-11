@@ -394,7 +394,7 @@
                 </div>
             </div>
             <div class="row" style="text-align: center">
-                <button class="btn btn-success padded-buttons" id="start-sudoku">Start New Game</button>
+                <button class="btn btn-success padded-buttons" id="start-sudoku-not">Start New Game</button>
                 <button class="btn btn-danger padded-buttons" onclick="resetAllSudoku()">Clear Canvas</button>
                 <img id="imgsudoku" class="canvas-img-css" width='500' height='500' hidden>
             </div>
@@ -429,13 +429,16 @@
             <div class="modal-body">
               <div class="container">
                   <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                           <button class="btn btn-primary" id="else">Use Numerical Methods</button>
                       </div>
-                      <div class="col-md-4" style="text-align:center">
+                      <div class="col-md-3" style="text-align:center">
                           <div class="loader" id="loaderh" hidden></div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3" style="text-align:center">
+                          <span id="loader-text" hidden><b>Loading with  --prayer</b></span>
+                      </div>
+                      <div class="col-md-3">
                           <button class="btn btn-danger" id="elseelse">Use Structural Methods</button>
                       </div>
                   </div>
@@ -508,6 +511,45 @@
             <div class="modal-body">
               <div class="container">
                   <div class="row" id="textMsg" style="text-align: center; font-size: 2rem;">
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="selectNumbersSudoku" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Select the numbers you'd like to start with!</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <div class="row" id="selectnumStart" style="text-align: center; font-size: 2rem;">
+                    <div class="col-md-3">
+                        <input type="number" value="3" id="number-1">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" value="7" id="number-2">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" value="2" id="number-3">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" value="0" id="number-4">
+                    </div>
+                  </div>
+                  <div class="row"  style="text-align: center">
+                    <br>
+                      <button type="button" class="btn btn-success" id="start-sudoku" data-dismiss="modal">Start the Game</button>
                   </div>
               </div>
             </div>
