@@ -18,9 +18,9 @@ def main():
 
 			for image, labels in tqdm(dataset):
 
-				image = Variable(image) #.cuda()
+				image = Variable(image).cuda()
 				image_noise = torch.add(image, N_FACTOR*noise)
-				image_noise = Variable(image_noise) #.cuda()
+				image_noise = Variable(image_noise).cuda()
 
 				optimizer.zero_grad()
 				e_output = encoder(image_noise, BATCH_SIZE)
@@ -47,8 +47,8 @@ if __name__ == '__main__':
 	datasets = minst_data(DATA_PATH, BATCH_SIZE)
 
 	## Initializations of the network
-	encoder = Encoder() #.cuda()
-	decoder = Decoder() #.cuda()
+	encoder = Encoder().cuda()
+	decoder = Decoder().cuda()
 
 	## Parameters, loss functiona and optimizer 
 	parameters = list(encoder.parameters()) + list(decoder.parameters())
